@@ -21,6 +21,7 @@ private slots:
     void on_checkButton_clicked();
     void on_actionExit_triggered();
     void on_actionOpen_triggered();
+    void on_actionAbout_triggered();
     void on_passwordLineEdit_textChanged(const QString &arg1);
 
 private:

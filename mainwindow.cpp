@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include "aboutdialog.h"
+
 #include <QCryptographicHash>
 #include <QFileDialog>
 
@@ -70,4 +72,12 @@ void MainWindow::updateHash(const QString& password)
     QString strNTLMHash = QString(baNTLMHash.toHex().toUpper());
 
     ui->hashLineEdit->setText(strNTLMHash);
+}
+
+void MainWindow::on_actionAbout_triggered()
+{
+    AboutDialog* aboutDialog = new AboutDialog(this);
+
+    if (aboutDialog)
+        aboutDialog->exec();
 }

@@ -130,7 +130,7 @@
        </sizepolicy>
       </property>
       <property name="title">
-       <string>Log</string>
+       <string>Output</string>
       </property>
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="0">
