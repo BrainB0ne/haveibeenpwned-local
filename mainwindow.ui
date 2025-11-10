@@ -7,15 +7,33 @@
     <x>0</x>
     <y>0</y>
     <width>600</width>
-    <height>400</height>
+    <height>450</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>HaveIBeenPwned Local</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="haveibeenpwned-local.qrc">
+    <normaloff>:/images/Have_I_Been_Pwned.png</normaloff>:/images/Have_I_Been_Pwned.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_3">
     <item row="0" column="0">
+     <widget class="QLabel" name="label_4">
+      <property name="text">
+       <string>Database:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLineEdit" name="dbLineEdit">
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0" colspan="2">
      <widget class="QTabWidget" name="tabWidget">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
@@ -96,7 +114,14 @@
       </widget>
      </widget>
     </item>
-    <item row="2" column="0">
+    <item row="2" column="0" colspan="2">
+     <widget class="QPushButton" name="checkButton">
+      <property name="text">
+       <string>Check!</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0" colspan="2">
      <widget class="QGroupBox" name="groupBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
@@ -110,19 +135,17 @@
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="0">
         <widget class="QPlainTextEdit" name="logPlainTextEdit">
+         <property name="font">
+          <font>
+           <family>Consolas</family>
+          </font>
+         </property>
          <property name="readOnly">
           <bool>true</bool>
          </property>
         </widget>
        </item>
       </layout>
-     </widget>
-    </item>
-    <item row="1" column="0">
-     <widget class="QPushButton" name="checkButton">
-      <property name="text">
-       <string>Check!</string>
-      </property>
      </widget>
     </item>
    </layout>
@@ -170,6 +193,8 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="haveibeenpwned-local.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -15,10 +15,17 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void updateHash(const QString& password);
+
 private slots:
     void on_checkButton_clicked();
+    void on_actionExit_triggered();
+    void on_actionOpen_triggered();
+    void on_passwordLineEdit_textChanged(const QString &arg1);
 
 private:
     Ui::MainWindow *ui;
+    QString m_strSQLiteDatabase;
+
 };
 #endif // MAINWINDOW_H
