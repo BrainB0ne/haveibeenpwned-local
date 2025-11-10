@@ -5,6 +5,10 @@
 
 #include <QCryptographicHash>
 #include <QFileDialog>
+#include <QSqlDatabase>
+#include <QSqlQuery>
+
+#define LINE_SEPARATOR "----------------------------------------------------------------------"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -13,6 +17,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     updateHash(ui->passwordLineEdit->text());
+
+    m_strSQLiteDatabase = "pwned_indexed";
+    ui->dbLineEdit->setText(m_strSQLiteDatabase);
 }
 
 MainWindow::~MainWindow()
@@ -27,17 +34,60 @@ void MainWindow::on_actionExit_triggered()
 
 void MainWindow::on_checkButton_clicked()
 {
-    updateHash(ui->passwordLineEdit->text());
+    QString connectionName;
 
-    ui->logPlainTextEdit->appendPlainText(
-                QString("Checking Password: %1 | Hash (NTLM): %2")
-                .arg(ui->passwordLineEdit->text())
-                .arg(ui->hashLineEdit->text()));
-
-    if (!m_strSQLiteDatabase.isEmpty())
+    if (!m_strSQLiteDatabase.isEmpty() && QFile::exists(m_strSQLiteDatabase))
     {
+        updateHash(ui->passwordLineEdit->text());
 
+        QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+        db.setDatabaseName(m_strSQLiteDatabase);
+        connectionName = db.connectionName();
+
+        if ( db.open() )
+        {
+            ui->logPlainTextEdit->appendPlainText(LINE_SEPARATOR);
+            //ui->logPlainTextEdit->appendPlainText("SQLite Database opened!");
+
+            ui->logPlainTextEdit->appendPlainText(
+                        QString("Checking Password: %1 | Hash (NTLM): %2")
+                        .arg(ui->passwordLineEdit->text())
+                        .arg(ui->hashLineEdit->text()));
+
+            QSqlQuery query;
+            query.prepare("SELECT prevalence FROM passwords WHERE hash=?");
+            query.bindValue(0, ui->hashLineEdit->text());
+            query.exec();
+
+            if (query.first())
+            {
+                QString prevalence = query.value(0).toString();
+                ui->logPlainTextEdit->appendPlainText(QString("Pwned! This password has been seen %1 times.").arg(prevalence));
+            }
+            else
+            {
+                ui->logPlainTextEdit->appendPlainText("Not pwned!");
+            }
+
+            db.close();
+
+            //ui->logPlainTextEdit->appendPlainText("SQLite Database closed!");
+            ui->logPlainTextEdit->appendPlainText(LINE_SEPARATOR);
+        }
     }
+    else
+    {
+        ui->logPlainTextEdit->appendPlainText("No SQLite database selected!");
+    }
+
+    if (!m_strSQLiteDatabase.isEmpty() && QFile::exists(m_strSQLiteDatabase))
+    {
+        QSqlDatabase::removeDatabase(connectionName);
+
+        //ui->logPlainTextEdit->appendPlainText(QString("SQLite Database '%1' removed!").arg(connectionName));
+    }
+
+    ui->logPlainTextEdit->ensureCursorVisible();
 }
 
 void MainWindow::on_actionOpen_triggered()

@@ -22,8 +22,7 @@ FORMS += \
     mainwindow.ui
 
 RESOURCES = \
-    haveibeenpwned-local.qrc \
-    hostednetwork-gui.qrc
+    haveibeenpwned-local.qrc
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
