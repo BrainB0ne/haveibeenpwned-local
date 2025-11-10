@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/Have_I_Been_Pwned.png</file>
+    </qresource>
+</RCC>
