@@ -27,17 +27,22 @@ SOURCES += \
     aboutdialog.cpp \
     main.cpp \
     mainwindow.cpp \
-    resultdialog.cpp
+    pwnedresult.cpp \
+    resultdialog.cpp \
+    resulttabledialog.cpp
 
 HEADERS += \
     aboutdialog.h \
     mainwindow.h \
-    resultdialog.h
+    pwnedresult.h \
+    resultdialog.h \
+    resulttabledialog.h
 
 FORMS += \
     aboutdialog.ui \
     mainwindow.ui \
-    resultdialog.ui
+    resultdialog.ui \
+    resulttabledialog.ui
 
 RESOURCES = \
     haveibeenpwned-local.qrc

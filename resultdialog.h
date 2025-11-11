@@ -38,6 +38,9 @@ public:
     void setLabelColor(int color);
     void setLabelText(const QString& text);
 
+private slots:
+    void on_okButtonBox_accepted();
+
 private:
     Ui::ResultDialog *ui;
 };

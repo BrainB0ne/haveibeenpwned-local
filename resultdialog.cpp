@@ -52,3 +52,9 @@ void ResultDialog::setLabelText(const QString& text)
 {
     ui->labelResult->setText(text);
 }
+
+void ResultDialog::on_okButtonBox_accepted()
+{
+    close();
+}
+

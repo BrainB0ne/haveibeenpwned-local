@@ -20,6 +20,8 @@
 
 #include "aboutdialog.h"
 #include "resultdialog.h"
+#include "resulttabledialog.h"
+#include "pwnedresult.h"
 
 #include <QCryptographicHash>
 #include <QStringEncoder>
@@ -37,8 +39,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     updateHash(ui->passwordLineEdit->text());
 
-    m_strSQLiteDatabase = "pwned_indexed";
-    ui->dbLineEdit->setText(m_strSQLiteDatabase);
+    mSQLiteDatabase = "pwned_indexed";
+    ui->dbLineEdit->setText(mSQLiteDatabase);
 }
 
 MainWindow::~MainWindow()
@@ -55,12 +57,12 @@ void MainWindow::on_checkButton_clicked()
 {
     QString connectionName;
 
-    if (!m_strSQLiteDatabase.isEmpty() && QFile::exists(m_strSQLiteDatabase))
+    if (!mSQLiteDatabase.isEmpty() && QFile::exists(mSQLiteDatabase))
     {
         updateHash(ui->passwordLineEdit->text());
 
         QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-        db.setDatabaseName(m_strSQLiteDatabase);
+        db.setDatabaseName(mSQLiteDatabase);
         connectionName = db.connectionName();
 
         if (db.open())
@@ -114,6 +116,9 @@ void MainWindow::on_checkButton_clicked()
             }
             else if (ui->tabWidget->currentIndex() == 1)
             {
+                qDeleteAll(mResults);
+                mResults.clear();
+
                 QString strTxtFileName = ui->fileLineEdit->text();
                 QFile file(strTxtFileName);
 
@@ -130,6 +135,16 @@ void MainWindow::on_checkButton_clicked()
                         }
 
                         ui->outputTextEdit->append(LINE_SEPARATOR);
+
+                        ResultTableDialog* resTableDialog = new ResultTableDialog(this);
+                        if (resTableDialog)
+                        {
+                            resTableDialog->setResults(mResults);
+                            resTableDialog->exec();
+
+                            qDeleteAll(mResults);
+                            mResults.clear();
+                        }
                     }
                 }
             }
@@ -142,7 +157,7 @@ void MainWindow::on_checkButton_clicked()
         ui->outputTextEdit->append("No SQLite database found!");
     }
 
-    if (!m_strSQLiteDatabase.isEmpty() && QFile::exists(m_strSQLiteDatabase))
+    if (!mSQLiteDatabase.isEmpty() && QFile::exists(mSQLiteDatabase))
     {
         QSqlDatabase::removeDatabase(connectionName);
     }
@@ -169,12 +184,34 @@ void MainWindow::processLine(const QString& line)
                                               .arg(line)
                                               .arg(strNTLMHash)
                                               .arg(prevalence));
+
+        PwnedResult* result = new PwnedResult(this);
+        if (result)
+        {
+            result->setPassword(line);
+            result->setNTLMHash(strNTLMHash);
+            result->setResult("Pwned!");
+            result->setPrevalence(prevalence);
+
+            mResults.append(result);
+        }
     }
     else
     {
         ui->outputTextEdit->append(QString("Not pwned! Password: %1 | NTLM: %2")
                                               .arg(line)
                                               .arg(strNTLMHash));
+
+        PwnedResult* result = new PwnedResult(this);
+        if (result)
+        {
+            result->setPassword(line);
+            result->setNTLMHash(strNTLMHash);
+            result->setResult("Not pwned!");
+            result->setPrevalence("0");
+
+            mResults.append(result);
+        }
     }
 }
 
@@ -193,8 +230,8 @@ void MainWindow::on_actionOpen_triggered()
 
     if (!fileName.isEmpty())
     {
-        m_strSQLiteDatabase = QDir::toNativeSeparators(fileName);
-        ui->dbLineEdit->setText(m_strSQLiteDatabase);
+        mSQLiteDatabase = QDir::toNativeSeparators(fileName);
+        ui->dbLineEdit->setText(mSQLiteDatabase);
     }
 }
 
