@@ -24,6 +24,10 @@ FORMS += \
 RESOURCES = \
     haveibeenpwned-local.qrc
 
+win32 {
+RC_FILE = haveibeenpwned-local.rc
+}
+
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
