@@ -77,7 +77,7 @@ void MainWindow::on_checkButton_clicked()
     }
     else
     {
-        ui->logPlainTextEdit->appendPlainText("No SQLite database selected!");
+        ui->logPlainTextEdit->appendPlainText("No SQLite database found!");
     }
 
     if (!m_strSQLiteDatabase.isEmpty() && QFile::exists(m_strSQLiteDatabase))
