@@ -4,6 +4,7 @@
 #include "aboutdialog.h"
 
 #include <QCryptographicHash>
+#include <QStringEncoder>
 #include <QFileDialog>
 #include <QSqlDatabase>
 #include <QSqlQuery>
