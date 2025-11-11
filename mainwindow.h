@@ -44,6 +44,7 @@ private slots:
     void on_passwordLineEdit_textChanged(const QString &arg1);
     void on_browseButton_clicked();
     void on_clearButton_clicked();
+    void on_passwordLineEdit_returnPressed();
 
 private:
     Ui::MainWindow *ui;

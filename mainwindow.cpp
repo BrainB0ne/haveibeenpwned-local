@@ -178,6 +178,11 @@ void MainWindow::processLine(const QString& line)
     }
 }
 
+void MainWindow::on_passwordLineEdit_returnPressed()
+{
+    on_checkButton_clicked();
+}
+
 void MainWindow::on_actionOpen_triggered()
 {
     QString fileName = QFileDialog::getOpenFileName(
@@ -245,4 +250,3 @@ void MainWindow::on_clearButton_clicked()
 {
     ui->outputTextEdit->clear();
 }
-
