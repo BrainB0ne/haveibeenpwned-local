@@ -144,6 +144,8 @@ void MainWindow::on_checkButton_clicked()
 
                             qDeleteAll(mResults);
                             mResults.clear();
+
+                            resTableDialog->deleteLater();
                         }
                     }
                 }
