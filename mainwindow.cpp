@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include "aboutdialog.h"
+#include "resultdialog.h"
 
 #include <QCryptographicHash>
 #include <QStringEncoder>
@@ -59,15 +60,40 @@ void MainWindow::on_checkButton_clicked()
                 query.bindValue(0, ui->hashLineEdit->text());
                 query.exec();
 
+                ResultDialog* resDialog = new ResultDialog(this);
+
                 if (query.first())
                 {
                     QString prevalence = query.value(0).toString();
                     ui->outputTextEdit->append(QString("<font color='red'>Pwned! This password has been seen %1 times.</font>").arg(prevalence));
+
+                    if (resDialog)
+                    {
+                        resDialog->setLabelColor(COLOR_RED);
+                        resDialog->setLabelText("Pwned!");
+
+                        ui->outputTextEdit->append(LINE_SEPARATOR);
+
+                        resDialog->exec();
+                    }
                 }
                 else
                 {
                     ui->outputTextEdit->append("Not pwned!");
+
+                    if (resDialog)
+                    {
+                        resDialog->setLabelColor(COLOR_GREEN);
+                        resDialog->setLabelText("Not pwned!");
+
+                        ui->outputTextEdit->append(LINE_SEPARATOR);
+
+                        resDialog->exec();
+                    }
                 }
+
+                if (resDialog)
+                    resDialog->deleteLater();
             }
             else if (ui->tabWidget->currentIndex() == 1)
             {
@@ -85,17 +111,13 @@ void MainWindow::on_checkButton_clicked()
                             processLine(line);
                             line = in.readLine();
                         }
+
+                        ui->outputTextEdit->append(LINE_SEPARATOR);
                     }
                 }
             }
-            else
-            {
-                // do nothing!
-            }
 
             db.close();
-
-            ui->outputTextEdit->append(LINE_SEPARATOR);
         }
     }
     else
