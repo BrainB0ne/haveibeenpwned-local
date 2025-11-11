@@ -87,7 +87,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <item row="1" column="0">
     <widget class="QPushButton" name="licenseButton">
      <property name="text">
-      <string>&amp;License</string>
+      <string>About Qt</string>
      </property>
     </widget>
    </item>
