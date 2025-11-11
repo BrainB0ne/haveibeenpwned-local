@@ -11,15 +11,18 @@ CONFIG += c++17
 SOURCES += \
     aboutdialog.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    resultdialog.cpp
 
 HEADERS += \
     aboutdialog.h \
-    mainwindow.h
+    mainwindow.h \
+    resultdialog.h
 
 FORMS += \
     aboutdialog.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    resultdialog.ui
 
 RESOURCES = \
     haveibeenpwned-local.qrc

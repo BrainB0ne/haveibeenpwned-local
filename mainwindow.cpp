@@ -49,9 +49,6 @@ void MainWindow::on_checkButton_clicked()
         {
             if (ui->tabWidget->currentIndex() == 0)
             {
-                //ui->outputTextEdit->append(LINE_SEPARATOR);
-                //ui->outputTextEdit->append("SQLite Database opened!");
-
                 ui->outputTextEdit->append(
                             QString("Checking Password: %1 | Hash (NTLM): %2")
                             .arg(ui->passwordLineEdit->text())
@@ -74,7 +71,6 @@ void MainWindow::on_checkButton_clicked()
             }
             else if (ui->tabWidget->currentIndex() == 1)
             {
-                // TODO: read list of passwords from TXT file.
                 QString strTxtFileName = ui->fileLineEdit->text();
                 QFile file(strTxtFileName);
 
@@ -99,7 +95,6 @@ void MainWindow::on_checkButton_clicked()
 
             db.close();
 
-            //ui->outputTextEdit->append("SQLite Database closed!");
             ui->outputTextEdit->append(LINE_SEPARATOR);
         }
     }
@@ -111,8 +106,6 @@ void MainWindow::on_checkButton_clicked()
     if (!m_strSQLiteDatabase.isEmpty() && QFile::exists(m_strSQLiteDatabase))
     {
         QSqlDatabase::removeDatabase(connectionName);
-
-        //ui->outputTextEdit->append(QString("SQLite Database '%1' removed!").arg(connectionName));
     }
 
     ui->outputTextEdit->ensureCursorVisible();
@@ -120,8 +113,6 @@ void MainWindow::on_checkButton_clicked()
 
 void MainWindow::processLine(const QString& line)
 {
-    //ui->outputTextEdit->append(LINE_SEPARATOR);
-    //ui->outputTextEdit->append("SQLite Database opened!");
     if (line.trimmed().isEmpty())
         return;
 
