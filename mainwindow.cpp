@@ -49,10 +49,10 @@ void MainWindow::on_checkButton_clicked()
         {
             if (ui->tabWidget->currentIndex() == 0)
             {
-                //ui->logPlainTextEdit->appendPlainText(LINE_SEPARATOR);
-                //ui->logPlainTextEdit->appendPlainText("SQLite Database opened!");
+                //ui->outputTextEdit->append(LINE_SEPARATOR);
+                //ui->outputTextEdit->append("SQLite Database opened!");
 
-                ui->logPlainTextEdit->appendPlainText(
+                ui->outputTextEdit->append(
                             QString("Checking Password: %1 | Hash (NTLM): %2")
                             .arg(ui->passwordLineEdit->text())
                             .arg(ui->hashLineEdit->text()));
@@ -65,11 +65,11 @@ void MainWindow::on_checkButton_clicked()
                 if (query.first())
                 {
                     QString prevalence = query.value(0).toString();
-                    ui->logPlainTextEdit->appendPlainText(QString("Pwned! This password has been seen %1 times.").arg(prevalence));
+                    ui->outputTextEdit->append(QString("<font color='red'>Pwned! This password has been seen %1 times.</font>").arg(prevalence));
                 }
                 else
                 {
-                    ui->logPlainTextEdit->appendPlainText("Not pwned!");
+                    ui->outputTextEdit->append("Not pwned!");
                 }
             }
             else if (ui->tabWidget->currentIndex() == 1)
@@ -99,29 +99,29 @@ void MainWindow::on_checkButton_clicked()
 
             db.close();
 
-            //ui->logPlainTextEdit->appendPlainText("SQLite Database closed!");
-            ui->logPlainTextEdit->appendPlainText(LINE_SEPARATOR);
+            //ui->outputTextEdit->append("SQLite Database closed!");
+            ui->outputTextEdit->append(LINE_SEPARATOR);
         }
     }
     else
     {
-        ui->logPlainTextEdit->appendPlainText("No SQLite database found!");
+        ui->outputTextEdit->append("No SQLite database found!");
     }
 
     if (!m_strSQLiteDatabase.isEmpty() && QFile::exists(m_strSQLiteDatabase))
     {
         QSqlDatabase::removeDatabase(connectionName);
 
-        //ui->logPlainTextEdit->appendPlainText(QString("SQLite Database '%1' removed!").arg(connectionName));
+        //ui->outputTextEdit->append(QString("SQLite Database '%1' removed!").arg(connectionName));
     }
 
-    ui->logPlainTextEdit->ensureCursorVisible();
+    ui->outputTextEdit->ensureCursorVisible();
 }
 
 void MainWindow::processLine(const QString& line)
 {
-    //ui->logPlainTextEdit->appendPlainText(LINE_SEPARATOR);
-    //ui->logPlainTextEdit->appendPlainText("SQLite Database opened!");
+    //ui->outputTextEdit->append(LINE_SEPARATOR);
+    //ui->outputTextEdit->append("SQLite Database opened!");
     if (line.trimmed().isEmpty())
         return;
 
@@ -135,14 +135,14 @@ void MainWindow::processLine(const QString& line)
     if (query.first())
     {
         QString prevalence = query.value(0).toString();
-        ui->logPlainTextEdit->appendPlainText(QString("Pwned! Password: %1 | NTLM: %2 | Seen %3 times.")
+        ui->outputTextEdit->append(QString("<font color='red'>Pwned! Password: %1 | NTLM: %2 | Seen %3 times.</font>")
                                               .arg(line)
                                               .arg(strNTLMHash)
                                               .arg(prevalence));
     }
     else
     {
-        ui->logPlainTextEdit->appendPlainText(QString("Not pwned! Password: %1 | NTLM: %2")
+        ui->outputTextEdit->append(QString("Not pwned! Password: %1 | NTLM: %2")
                                               .arg(line)
                                               .arg(strNTLMHash));
     }
