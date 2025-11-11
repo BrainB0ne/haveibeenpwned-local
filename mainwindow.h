@@ -25,8 +25,8 @@ private slots:
     void on_actionOpen_triggered();
     void on_actionAbout_triggered();
     void on_passwordLineEdit_textChanged(const QString &arg1);
-
     void on_browseButton_clicked();
+    void on_clearButton_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -224,3 +224,8 @@ void MainWindow::on_browseButton_clicked()
     }
 }
 
+void MainWindow::on_clearButton_clicked()
+{
+    ui->outputTextEdit->clear();
+}
+
