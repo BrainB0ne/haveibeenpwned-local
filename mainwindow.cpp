@@ -49,7 +49,7 @@ void MainWindow::on_checkButton_clicked()
         {
             if (ui->tabWidget->currentIndex() == 0)
             {
-                ui->logPlainTextEdit->appendPlainText(LINE_SEPARATOR);
+                //ui->logPlainTextEdit->appendPlainText(LINE_SEPARATOR);
                 //ui->logPlainTextEdit->appendPlainText("SQLite Database opened!");
 
                 ui->logPlainTextEdit->appendPlainText(
@@ -75,6 +75,22 @@ void MainWindow::on_checkButton_clicked()
             else if (ui->tabWidget->currentIndex() == 1)
             {
                 // TODO: read list of passwords from TXT file.
+                QString strTxtFileName = ui->fileLineEdit->text();
+                QFile file(strTxtFileName);
+
+                if (!strTxtFileName.isEmpty() && file.exists())
+                {
+                    if (file.open(QIODevice::ReadOnly | QIODevice::Text))
+                    {
+                        QTextStream in(&file);
+                        QString line = in.readLine();
+                        while (!line.isNull())
+                        {
+                            processLine(line);
+                            line = in.readLine();
+                        }
+                    }
+                }
             }
             else
             {
@@ -102,6 +118,36 @@ void MainWindow::on_checkButton_clicked()
     ui->logPlainTextEdit->ensureCursorVisible();
 }
 
+void MainWindow::processLine(const QString& line)
+{
+    //ui->logPlainTextEdit->appendPlainText(LINE_SEPARATOR);
+    //ui->logPlainTextEdit->appendPlainText("SQLite Database opened!");
+    if (line.trimmed().isEmpty())
+        return;
+
+    QString strNTLMHash = calcHash(line);
+
+    QSqlQuery query;
+    query.prepare("SELECT prevalence FROM passwords WHERE hash=?");
+    query.bindValue(0, strNTLMHash);
+    query.exec();
+
+    if (query.first())
+    {
+        QString prevalence = query.value(0).toString();
+        ui->logPlainTextEdit->appendPlainText(QString("Pwned! Password: %1 | NTLM: %2 | Seen %3 times.")
+                                              .arg(line)
+                                              .arg(strNTLMHash)
+                                              .arg(prevalence));
+    }
+    else
+    {
+        ui->logPlainTextEdit->appendPlainText(QString("Not pwned! Password: %1 | NTLM: %2")
+                                              .arg(line)
+                                              .arg(strNTLMHash));
+    }
+}
+
 void MainWindow::on_actionOpen_triggered()
 {
     QString fileName = QFileDialog::getOpenFileName(
@@ -123,7 +169,7 @@ void MainWindow::on_passwordLineEdit_textChanged(const QString &arg1)
     updateHash(arg1);
 }
 
-void MainWindow::updateHash(const QString& password)
+QString MainWindow::calcHash(const QString& password)
 {
     QStringEncoder toUtf16LE = QStringEncoder(QStringEncoder::Utf16LE);
     QByteArray encodedUtf16LEString = toUtf16LE(password);
@@ -132,6 +178,13 @@ void MainWindow::updateHash(const QString& password)
                 encodedUtf16LEString, QCryptographicHash::Md4);
 
     QString strNTLMHash = QString(baNTLMHash.toHex().toUpper());
+
+    return strNTLMHash;
+}
+
+void MainWindow::updateHash(const QString& password)
+{
+    QString strNTLMHash = calcHash(password);
 
     ui->hashLineEdit->setText(strNTLMHash);
 }
@@ -143,3 +196,18 @@ void MainWindow::on_actionAbout_triggered()
     if (aboutDialog)
         aboutDialog->exec();
 }
+
+void MainWindow::on_browseButton_clicked()
+{
+    QString fileName = QFileDialog::getOpenFileName(
+                this,
+                tr("Select Passwords File"),
+                ui->fileLineEdit->text(),
+                tr("Text Files (*.txt)"));
+
+    if (!fileName.isEmpty())
+    {
+        ui->fileLineEdit->setText(QDir::toNativeSeparators(fileName));
+    }
+}
+

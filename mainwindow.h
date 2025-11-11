@@ -15,7 +15,9 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    QString calcHash(const QString& password);
     void updateHash(const QString& password);
+    void processLine(const QString& line);
 
 private slots:
     void on_checkButton_clicked();
@@ -23,6 +25,8 @@ private slots:
     void on_actionOpen_triggered();
     void on_actionAbout_triggered();
     void on_passwordLineEdit_textChanged(const QString &arg1);
+
+    void on_browseButton_clicked();
 
 private:
     Ui::MainWindow *ui;
