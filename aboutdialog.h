@@ -3,8 +3,6 @@
 
 #include <QDialog>
 
-class LicenseDialog;
-
 namespace Ui {
 class AboutDialog;
 }
