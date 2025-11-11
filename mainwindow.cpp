@@ -63,7 +63,7 @@ void MainWindow::on_checkButton_clicked()
         db.setDatabaseName(m_strSQLiteDatabase);
         connectionName = db.connectionName();
 
-        if ( db.open() )
+        if (db.open())
         {
             if (ui->tabWidget->currentIndex() == 0)
             {
