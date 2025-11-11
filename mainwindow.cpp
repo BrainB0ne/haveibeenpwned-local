@@ -9,7 +9,7 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 
-#define LINE_SEPARATOR "----------------------------------------------------------------------"
+#define LINE_SEPARATOR "-----------------------------------------------------------------"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -47,27 +47,38 @@ void MainWindow::on_checkButton_clicked()
 
         if ( db.open() )
         {
-            ui->logPlainTextEdit->appendPlainText(LINE_SEPARATOR);
-            //ui->logPlainTextEdit->appendPlainText("SQLite Database opened!");
-
-            ui->logPlainTextEdit->appendPlainText(
-                        QString("Checking Password: %1 | Hash (NTLM): %2")
-                        .arg(ui->passwordLineEdit->text())
-                        .arg(ui->hashLineEdit->text()));
-
-            QSqlQuery query;
-            query.prepare("SELECT prevalence FROM passwords WHERE hash=?");
-            query.bindValue(0, ui->hashLineEdit->text());
-            query.exec();
-
-            if (query.first())
+            if (ui->tabWidget->currentIndex() == 0)
             {
-                QString prevalence = query.value(0).toString();
-                ui->logPlainTextEdit->appendPlainText(QString("Pwned! This password has been seen %1 times.").arg(prevalence));
+                ui->logPlainTextEdit->appendPlainText(LINE_SEPARATOR);
+                //ui->logPlainTextEdit->appendPlainText("SQLite Database opened!");
+
+                ui->logPlainTextEdit->appendPlainText(
+                            QString("Checking Password: %1 | Hash (NTLM): %2")
+                            .arg(ui->passwordLineEdit->text())
+                            .arg(ui->hashLineEdit->text()));
+
+                QSqlQuery query;
+                query.prepare("SELECT prevalence FROM passwords WHERE hash=?");
+                query.bindValue(0, ui->hashLineEdit->text());
+                query.exec();
+
+                if (query.first())
+                {
+                    QString prevalence = query.value(0).toString();
+                    ui->logPlainTextEdit->appendPlainText(QString("Pwned! This password has been seen %1 times.").arg(prevalence));
+                }
+                else
+                {
+                    ui->logPlainTextEdit->appendPlainText("Not pwned!");
+                }
+            }
+            else if (ui->tabWidget->currentIndex() == 1)
+            {
+                // TODO: read list of passwords from TXT file.
             }
             else
             {
-                ui->logPlainTextEdit->appendPlainText("Not pwned!");
+                // do nothing!
             }
 
             db.close();
