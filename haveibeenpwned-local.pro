@@ -35,3 +35,8 @@ RC_FILE = haveibeenpwned-local.rc
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    python/build_database_en.py \
+    python/query_db_en.py \
+    python/query_db_list.py
