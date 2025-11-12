@@ -20,5 +20,8 @@
 PwnedResult::PwnedResult(QObject *parent)
     : QObject(parent)
 {
-
+    mPassword = QString();
+    mNTLMHash = QString();
+    mResult = QString();
+    mPrevalence = QString();
 }
