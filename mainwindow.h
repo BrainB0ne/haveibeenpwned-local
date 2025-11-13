@@ -19,11 +19,13 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "pwnedresult.h"
+#include <QSettings>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
+
+class PwnedResult;
 
 class MainWindow : public QMainWindow
 {
@@ -33,9 +35,15 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void loadSettings();
+    void saveSettings();
+
     QString calcHash(const QString& password);
     void updateHash(const QString& password);
     void processLine(const QString& line);
+
+protected:
+    void closeEvent(QCloseEvent *event);
 
 private slots:
     void on_checkButton_clicked();
@@ -51,6 +59,6 @@ private:
     Ui::MainWindow *ui;
     QString mSQLiteDatabase;
     QList<PwnedResult*> mResults;
-
+    QSettings *mSettings;
 };
 #endif // MAINWINDOW_H

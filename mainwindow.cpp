@@ -28,8 +28,15 @@
 #include <QFileDialog>
 #include <QSqlDatabase>
 #include <QSqlQuery>
+#include <QCloseEvent>
 
 #define LINE_SEPARATOR "-----------------------------------------------------------------"
+
+#ifdef WIN32
+    #define DEFAULT_DB "pwned_indexed.sqlite"
+#else
+    #define DEFAULT_DB "./pwned_indexed.sqlite"
+#endif
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -37,15 +44,45 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    updateHash(ui->passwordLineEdit->text());
-
-    mSQLiteDatabase = "pwned_indexed.sqlite";
-    ui->dbLineEdit->setText(mSQLiteDatabase);
+    mSettings = nullptr;
 }
 
 MainWindow::~MainWindow()
 {
     if (ui) delete ui;
+    if (mSettings) delete mSettings;
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    saveSettings();
+
+    QMainWindow::closeEvent(event);
+}
+
+void MainWindow::loadSettings()
+{
+    mSettings = new QSettings(QSettings::IniFormat, QSettings::UserScope, QApplication::applicationName(), "settings", this);
+
+    if (mSettings)
+    {
+        mSQLiteDatabase = mSettings->value("Settings/SQLiteDatabase", DEFAULT_DB).toString();
+        ui->dbLineEdit->setText(mSQLiteDatabase);
+
+        QString strPasswordsListFile = mSettings->value("Settings/PasswordsListFile", QString()).toString();
+        ui->fileLineEdit->setText(strPasswordsListFile);
+    }
+
+    updateHash(ui->passwordLineEdit->text());
+}
+
+void MainWindow::saveSettings()
+{
+    if (mSettings)
+    {
+        mSettings->setValue("Settings/SQLiteDatabase", ui->dbLineEdit->text());
+        mSettings->setValue("Settings/PasswordsListFile", ui->fileLineEdit->text());
+    }
 }
 
 void MainWindow::on_actionExit_triggered()
