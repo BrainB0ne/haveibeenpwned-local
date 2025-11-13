@@ -28,7 +28,7 @@ SetupIconFile=logo.ico
 UninstallDisplayIcon={app}\{#MyAppExeName}
 Compression=lzma
 SolidCompression=yes
-WizardStyle=modern
+WizardStyle=classic
 ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
 
