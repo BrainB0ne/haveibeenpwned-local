@@ -39,7 +39,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     updateHash(ui->passwordLineEdit->text());
 
-    mSQLiteDatabase = "pwned_indexed";
+    mSQLiteDatabase = "pwned_indexed.sqlite";
     ui->dbLineEdit->setText(mSQLiteDatabase);
 }
 
@@ -228,7 +228,7 @@ void MainWindow::on_actionOpen_triggered()
                 this,
                 tr("Select SQLite Database"),
                 ui->dbLineEdit->text(),
-                tr("All Files (*.*)"));
+                tr("SQLite Database Files (*.sqlite)"));
 
     if (!fileName.isEmpty())
     {
