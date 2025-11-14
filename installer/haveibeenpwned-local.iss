@@ -40,6 +40,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 Source: "{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "hibp2sqlite.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "logo.ico"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D3Dcompiler_47.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "opengl32sw.dll"; DestDir: "{app}"; Flags: ignoreversion
