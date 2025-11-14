@@ -41,7 +41,7 @@ BEGIN
             VALUE   "FileDescription",  "HaveIBeenPwned Local\0"
             VALUE   "FileVersion",      "0.1.0.0\0"
             VALUE   "InternalName",     "haveibeenpwned-local\0"
-            VALUE   "LegalCopyright",   "Copyleft 2019\0"
+            VALUE   "LegalCopyright",   "Copyleft 2025\0"
             VALUE   "OriginalFilename", "haveibeenpwned-local.exe\0"
             VALUE   "ProductName",      "HaveIBeenPwned Local\0"
             VALUE   "ProductVersion",   "0.1.0.0\0"
