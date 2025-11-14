@@ -92,7 +92,7 @@ void MainWindow::on_actionExit_triggered()
 
 void MainWindow::on_checkButton_clicked()
 {
-    QString connectionName;
+    QString connectionName = QString();
 
     if (!mSQLiteDatabase.isEmpty() && QFile::exists(mSQLiteDatabase))
     {
