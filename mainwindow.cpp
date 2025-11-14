@@ -35,7 +35,7 @@
 #ifdef WIN32
     #define DEFAULT_DB "pwned_indexed.sqlite"
 #else
-    #define DEFAULT_DB "./pwned_indexed.sqlite"
+    #define DEFAULT_DB "~/pwned_indexed.sqlite"
 #endif
 
 MainWindow::MainWindow(QWidget *parent)
