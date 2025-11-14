@@ -184,6 +184,8 @@ void MainWindow::on_checkButton_clicked()
 
                             resTableDialog->deleteLater();
                         }
+
+                        file.close();
                     }
                 }
             }
