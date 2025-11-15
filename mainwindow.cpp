@@ -88,7 +88,6 @@ void MainWindow::loadSettings()
 
         mConvertInputFile = mSettings->value("Settings/ConvertInputFile", QString()).toString();
         mConvertOutputFile = mSettings->value("Settings/ConvertOutputFile", QString()).toString();
-
     }
 
     updateHash(ui->passwordLineEdit->text());
@@ -414,6 +413,16 @@ void MainWindow::conversionFinished(int exitCode, QProcess::ExitStatus exitStatu
     if (exitStatus == QProcess::NormalExit)
     {
         ui->outputTextEdit->append(QString("SQLite database conversion process exited with exitcode: %1").arg(exitCode));
+
+        if (exitCode == 0)
+        {
+            int retCode = QMessageBox::question(this, APP_TITLE, "Do you want to load the created SQLite database?");
+
+            if (retCode == QMessageBox::Yes)
+            {
+                ui->dbLineEdit->setText(mConvertOutputFile);
+            }
+        }
     }
     else
     {
