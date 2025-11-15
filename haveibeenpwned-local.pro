@@ -32,6 +32,7 @@ SOURCES += \
     resulttabledialog.cpp
 
 HEADERS += \
+    haveibeenpwned-local.rc \
     aboutdialog.h \
     mainwindow.h \
     pwnedresult.h \
