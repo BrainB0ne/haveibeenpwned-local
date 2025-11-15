@@ -386,7 +386,7 @@ void MainWindow::on_actionConvert_triggered()
 #ifdef WIN32
     mConversionProcess->start("hibp2sqlite.exe", arguments);
 #else
-    mConversionProcess->start("hibp2sqlite", arguments));
+    mConversionProcess->start("hibp2sqlite", arguments);
 #endif
 
     connect(mConversionProcess, SIGNAL(readyReadStandardOutput()),
