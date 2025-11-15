@@ -311,6 +311,7 @@ void MainWindow::on_actionConvert_triggered()
     if (!QFile::exists("hibp2sqlite"))
     {
         QMessageBox::critical(this, APP_TITLE, "Error: Unable to start conversion, hibp2sqlite does not exist!");
+        return;
     }
 #endif
 
