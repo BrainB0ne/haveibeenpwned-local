@@ -20,6 +20,7 @@ Then, download all NTLM hashes to a single txt file called pwnedpasswords_ntlm.t
 haveibeenpwned-downloader.exe -n pwnedpasswords_ntlm
 
 Menu -> Database -> Convert starts a conversion process with hibp2sqlite.
+Note: Make sure hibp2sqlite.exe is located in the same folder as haveibeenpwned-local.exe if you want to use the Convert feature.
 
 Caution!
 Make sure there is enough free space on your drive since this file is at the time of writing ~70 GB.
