@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    QApplication::setApplicationName("HaveIBeenPwned Local");
+    QApplication::setApplicationName("HaveIBeenPwned-Local");
     QApplication::setApplicationVersion("0.1.0");
 
     MainWindow w;
