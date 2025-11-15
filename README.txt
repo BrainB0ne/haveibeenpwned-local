@@ -25,6 +25,9 @@ Caution!
 Make sure there is enough free space on your drive since this file is at the time of writing ~70 GB.
 The conversion to SQLite with hibp2sqlite takes another ~180 GB for the SQLite database file.
 
+Credits to the author of the following article since it gave me the idea to create this tool.
+https://medium.com/analytics-vidhya/creating-a-local-version-of-the-haveibeenpwned-password-database-with-python-and-sqlite-918a7b6a238a
+
 And last, but not least... Read the disclaimer below. :)
 
 Disclaimer
