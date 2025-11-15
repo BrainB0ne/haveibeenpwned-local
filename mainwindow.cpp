@@ -22,6 +22,7 @@
 #include "resultdialog.h"
 #include "resulttabledialog.h"
 #include "pwnedresult.h"
+#include "convertdialog.h"
 
 #include <QCryptographicHash>
 #include <QStringEncoder>
@@ -32,6 +33,7 @@
 #include <QMessageBox>
 
 #define LINE_SEPARATOR "----------------------------------------------------------------------"
+#define APP_TITLE "HaveIBeenPwned Local"
 
 #ifdef WIN32
     #define DEFAULT_DB "pwned_indexed.sqlite"
@@ -47,6 +49,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     mSettings = nullptr;
     mConversionProcess = nullptr;
+    mConvertInputFile = QString();
+    mConvertOutputFile = QString();
 }
 
 MainWindow::~MainWindow()
@@ -63,7 +67,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     if (mConversionProcess && mConversionProcess->state() == QProcess::Running)
     {
         event->ignore();
-        QMessageBox::warning(this, "HaveIBeenPwned Local", "Can't exit application now, database conversion process still running!");
+        QMessageBox::warning(this, APP_TITLE, "Can't exit application now, database conversion process still running!");
         return;
     }
 
@@ -81,6 +85,10 @@ void MainWindow::loadSettings()
 
         QString strPasswordsListFile = mSettings->value("Settings/PasswordsListFile", QString()).toString();
         ui->fileLineEdit->setText(strPasswordsListFile);
+
+        mConvertInputFile = mSettings->value("Settings/ConvertInputFile", QString()).toString();
+        mConvertOutputFile = mSettings->value("Settings/ConvertOutputFile", QString()).toString();
+
     }
 
     updateHash(ui->passwordLineEdit->text());
@@ -92,6 +100,8 @@ void MainWindow::saveSettings()
     {
         mSettings->setValue("Settings/SQLiteDatabase", ui->dbLineEdit->text());
         mSettings->setValue("Settings/PasswordsListFile", ui->fileLineEdit->text());
+        mSettings->setValue("Settings/ConvertInputFile", mConvertInputFile);
+        mSettings->setValue("Settings/ConvertOutputFile", mConvertOutputFile);
     }
 }
 
@@ -288,14 +298,31 @@ void MainWindow::on_actionLoad_triggered()
 
 void MainWindow::on_actionConvert_triggered()
 {
-    // TODO: add code here!
-
-    QString inputFile;
-    QString outputFile;
-
     if (mConversionProcess && mConversionProcess->state() == QProcess::Running)
     {
-        QMessageBox::warning(this, "HaveIBeenPwned Local", "Can't start conversion now, another database conversion process is still running!");
+        QMessageBox::warning(this, APP_TITLE, "Can't start conversion now, another database conversion process is still running!");
+        return;
+    }
+
+    ConvertDialog* convertDialog = new ConvertDialog(this);
+
+    if (convertDialog)
+    {
+        convertDialog->initialize(mConvertInputFile, mConvertOutputFile);
+
+        if (convertDialog->exec() == QDialog::Accepted)
+        {
+            mConvertInputFile = convertDialog->getInputFile();
+            mConvertOutputFile = convertDialog->getOutputFile();
+        }
+        else
+        {
+            return;
+        }
+    }
+    else
+    {
+        QMessageBox::critical(this, APP_TITLE, "Failed to create ConvertDialog!");
         return;
     }
 
@@ -305,8 +332,8 @@ void MainWindow::on_actionConvert_triggered()
     }
 
     QStringList arguments;
-    arguments.append(inputFile);
-    arguments.append(outputFile);
+    arguments << mConvertInputFile;
+    arguments << mConvertOutputFile;
 
 #ifdef WIN32
     mConversionProcess->start("hibp2sqlite.exe", arguments);
@@ -337,7 +364,7 @@ void MainWindow::conversionFinished(int exitCode, QProcess::ExitStatus exitStatu
 
     if (exitStatus == QProcess::NormalExit)
     {
-        ui->outputTextEdit->append(QString("SQLite database conversion process exited normally with exitcode: %1").arg(exitCode));
+        ui->outputTextEdit->append(QString("SQLite database conversion process exited with exitcode: %1").arg(exitCode));
     }
     else
     {

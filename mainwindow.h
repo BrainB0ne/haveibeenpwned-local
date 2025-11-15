@@ -66,5 +66,8 @@ private:
     QList<PwnedResult*> mResults;
     QSettings *mSettings;
     QProcess *mConversionProcess;
+    QString mConvertInputFile;
+    QString mConvertOutputFile;
 };
+
 #endif // MAINWINDOW_H

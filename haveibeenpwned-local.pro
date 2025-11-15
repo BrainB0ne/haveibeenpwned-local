@@ -25,6 +25,7 @@ CONFIG += c++17
 
 SOURCES += \
     aboutdialog.cpp \
+    convertdialog.cpp \
     main.cpp \
     mainwindow.cpp \
     pwnedresult.cpp \
@@ -32,6 +33,7 @@ SOURCES += \
     resulttabledialog.cpp
 
 HEADERS += \
+    convertdialog.h \
     haveibeenpwned-local.rc \
     aboutdialog.h \
     mainwindow.h \
@@ -41,6 +43,7 @@ HEADERS += \
 
 FORMS += \
     aboutdialog.ui \
+    convertdialog.ui \
     mainwindow.ui \
     resultdialog.ui \
     resulttabledialog.ui
