@@ -20,6 +20,7 @@
 
 #include <QMainWindow>
 #include <QSettings>
+#include <QProcess>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -56,10 +57,14 @@ private slots:
     void on_clearButton_clicked();
     void on_passwordLineEdit_returnPressed();
 
+    void readConversionOutput();
+    void conversionFinished(int exitCode, QProcess::ExitStatus exitStatus = QProcess::NormalExit);
+
 private:
     Ui::MainWindow *ui;
     QString mSQLiteDatabase;
     QList<PwnedResult*> mResults;
     QSettings *mSettings;
+    QProcess *mConversionProcess;
 };
 #endif // MAINWINDOW_H

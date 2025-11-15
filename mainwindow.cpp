@@ -29,8 +29,9 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QCloseEvent>
+#include <QMessageBox>
 
-#define LINE_SEPARATOR "-----------------------------------------------------------------"
+#define LINE_SEPARATOR "----------------------------------------------------------------------"
 
 #ifdef WIN32
     #define DEFAULT_DB "pwned_indexed.sqlite"
@@ -45,17 +46,26 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     mSettings = nullptr;
+    mConversionProcess = nullptr;
 }
 
 MainWindow::~MainWindow()
 {
     if (ui) delete ui;
     if (mSettings) delete mSettings;
+    if (mConversionProcess) delete mConversionProcess;
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     saveSettings();
+
+    if (mConversionProcess && mConversionProcess->state() == QProcess::Running)
+    {
+        event->ignore();
+        QMessageBox::warning(this, "HaveIBeenPwned Local", "Can't exit application now, database conversion process still running!");
+        return;
+    }
 
     QMainWindow::closeEvent(event);
 }
@@ -279,6 +289,68 @@ void MainWindow::on_actionLoad_triggered()
 void MainWindow::on_actionConvert_triggered()
 {
     // TODO: add code here!
+
+    QString inputFile;
+    QString outputFile;
+
+    if (mConversionProcess && mConversionProcess->state() == QProcess::Running)
+    {
+        QMessageBox::warning(this, "HaveIBeenPwned Local", "Can't start conversion now, another database conversion process is still running!");
+        return;
+    }
+
+    if (!mConversionProcess)
+    {
+        mConversionProcess = new QProcess(this);
+    }
+
+    QStringList arguments;
+    arguments.append(inputFile);
+    arguments.append(outputFile);
+
+#ifdef WIN32
+    mConversionProcess->start("hibp2sqlite.exe", arguments);
+#else
+    mConversionProcess->start("hibp2sqlite", arguments));
+#endif
+
+    connect(mConversionProcess, SIGNAL(readyReadStandardOutput()),
+            this, SLOT(readConversionOutput()));
+    connect(mConversionProcess, SIGNAL(finished(int, QProcess::ExitStatus)),
+            this, SLOT(conversionFinished(int, QProcess::ExitStatus)));
+}
+
+void MainWindow::readConversionOutput()
+{
+    QString line = QString();
+
+    while (mConversionProcess->canReadLine())
+    {
+        line = mConversionProcess->readLine();
+        ui->outputTextEdit->append(line.remove("\r").remove("\n"));
+    }
+}
+
+void MainWindow::conversionFinished(int exitCode, QProcess::ExitStatus exitStatus)
+{
+    ui->outputTextEdit->append(LINE_SEPARATOR);
+
+    if (exitStatus == QProcess::NormalExit)
+    {
+        ui->outputTextEdit->append(QString("SQLite database conversion process exited normally with exitcode: %1").arg(exitCode));
+    }
+    else
+    {
+        ui->outputTextEdit->append(QString("Error: SQLite database conversion process exited abnormally with exitcode: %1").arg(exitCode));
+    }
+
+    ui->outputTextEdit->append(LINE_SEPARATOR);
+
+    if (mConversionProcess->state() == QProcess::NotRunning)
+    {
+        delete mConversionProcess;
+        mConversionProcess = nullptr;
+    }
 }
 
 void MainWindow::on_passwordLineEdit_textChanged(const QString &arg1)
