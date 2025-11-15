@@ -67,7 +67,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     if (mConversionProcess && mConversionProcess->state() == QProcess::Running)
     {
         event->ignore();
-        QMessageBox::warning(this, APP_TITLE, "Can't exit application now, database conversion process still running!");
+        QMessageBox::warning(this, APP_TITLE, "Warning: Can't exit application now, database conversion process still running!");
         return;
     }
 
@@ -219,7 +219,7 @@ void MainWindow::on_checkButton_clicked()
     }
     else
     {
-        ui->outputTextEdit->append("No SQLite database found!");
+        ui->outputTextEdit->append("<font color='red'>Error: No SQLite database found!</font>");
     }
 
     if (!mSQLiteDatabase.isEmpty() && QFile::exists(mSQLiteDatabase))
@@ -302,9 +302,22 @@ void MainWindow::on_actionLoad_triggered()
 
 void MainWindow::on_actionConvert_triggered()
 {
+#ifdef WIN32
+    if (!QFile::exists("hibp2sqlite.exe"))
+    {
+        QMessageBox::critical(this, APP_TITLE, "Error: Unable to start conversion, hibp2sqlite.exe does not exist!");
+        return;
+    }
+#else
+    if (!QFile::exists("hibp2sqlite"))
+    {
+        QMessageBox::critical(this, APP_TITLE, "Error: Unable to start conversion, hibp2sqlite does not exist!");
+    }
+#endif
+
     if (mConversionProcess && mConversionProcess->state() == QProcess::Running)
     {
-        QMessageBox::warning(this, APP_TITLE, "Can't start conversion now, another database conversion process is still running!");
+        QMessageBox::warning(this, APP_TITLE, "Error: Unable to start conversion now, another database conversion process is still running!");
         return;
     }
 
@@ -322,7 +335,7 @@ void MainWindow::on_actionConvert_triggered()
             if (!QFile::exists(mConvertInputFile))
             {
                 convertDialog->deleteLater();
-                QMessageBox::critical(this, APP_TITLE, "Error: Can't start conversion, input file does not exist!");
+                QMessageBox::critical(this, APP_TITLE, "Error: Unable to start conversion, input file does not exist!");
                 return;
             }
 
@@ -337,7 +350,7 @@ void MainWindow::on_actionConvert_triggered()
                     if (!removeOK)
                     {
                         convertDialog->deleteLater();
-                        QMessageBox::critical(this, APP_TITLE, "Error: Can't start conversion, failed to remove output file!");
+                        QMessageBox::critical(this, APP_TITLE, "Error: Unable to start conversion, failed to remove output file!");
                         return;
                     }
                 }
@@ -358,7 +371,7 @@ void MainWindow::on_actionConvert_triggered()
     }
     else
     {
-        QMessageBox::critical(this, APP_TITLE, "Failed to create ConvertDialog!");
+        QMessageBox::critical(this, APP_TITLE, "Error: Failed to create ConvertDialog!");
         return;
     }
 
@@ -451,7 +464,7 @@ void MainWindow::on_actionAbout_triggered()
     }
     else
     {
-        QMessageBox::critical(this, APP_TITLE, "Failed to create AboutDialog!");
+        QMessageBox::critical(this, APP_TITLE, "Error: Failed to create AboutDialog!");
         return;
     }
 }
