@@ -191,6 +191,8 @@ void MainWindow::on_checkButton_clicked()
                             line = in.readLine();
                         }
 
+                        file.close();
+
                         ui->outputTextEdit->append(LINE_SEPARATOR);
 
                         ResultTableDialog* resTableDialog = new ResultTableDialog(this);
@@ -204,8 +206,10 @@ void MainWindow::on_checkButton_clicked()
 
                             resTableDialog->deleteLater();
                         }
-
-                        file.close();
+                        else
+                        {
+                            QMessageBox::critical(this, APP_TITLE, "Failed to create ResultTableDialog!");
+                        }
                     }
                 }
             }
@@ -314,11 +318,43 @@ void MainWindow::on_actionConvert_triggered()
         {
             mConvertInputFile = convertDialog->getInputFile();
             mConvertOutputFile = convertDialog->getOutputFile();
+
+            if (!QFile::exists(mConvertInputFile))
+            {
+                convertDialog->deleteLater();
+                QMessageBox::critical(this, APP_TITLE, "Error: Can't start conversion, input file does not exist!");
+                return;
+            }
+
+            if (QFile::exists(mConvertOutputFile))
+            {
+                int retCode = QMessageBox::question(this, APP_TITLE, "Attention: Output file already exists!\nAre you sure you want to continue and remove/overwrite it?");
+
+                if (retCode == QMessageBox::Yes)
+                {
+                    bool removeOK = QFile::remove(mConvertOutputFile);
+
+                    if (!removeOK)
+                    {
+                        convertDialog->deleteLater();
+                        QMessageBox::critical(this, APP_TITLE, "Error: Can't start conversion, failed to remove output file!");
+                        return;
+                    }
+                }
+                else
+                {
+                    convertDialog->deleteLater();
+                    return;
+                }
+            }
         }
         else
         {
+            convertDialog->deleteLater();
             return;
         }
+
+        convertDialog->deleteLater();
     }
     else
     {
@@ -410,7 +446,14 @@ void MainWindow::on_actionAbout_triggered()
     AboutDialog* aboutDialog = new AboutDialog(this);
 
     if (aboutDialog)
+    {
         aboutDialog->exec();
+    }
+    else
+    {
+        QMessageBox::critical(this, APP_TITLE, "Failed to create AboutDialog!");
+        return;
+    }
 }
 
 void MainWindow::on_browseButton_clicked()
