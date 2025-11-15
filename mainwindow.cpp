@@ -261,7 +261,7 @@ void MainWindow::on_passwordLineEdit_returnPressed()
     on_checkButton_clicked();
 }
 
-void MainWindow::on_actionOpen_triggered()
+void MainWindow::on_actionLoad_triggered()
 {
     QString fileName = QFileDialog::getOpenFileName(
                 this,
@@ -276,6 +276,10 @@ void MainWindow::on_actionOpen_triggered()
     }
 }
 
+void MainWindow::on_actionConvert_triggered()
+{
+    // TODO: add code here!
+}
 
 void MainWindow::on_passwordLineEdit_textChanged(const QString &arg1)
 {

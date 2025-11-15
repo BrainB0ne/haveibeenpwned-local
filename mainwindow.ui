@@ -195,14 +195,16 @@
      <x>0</x>
      <y>0</y>
      <width>600</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_File">
     <property name="title">
      <string>&amp;Database</string>
     </property>
-    <addaction name="actionOpen"/>
+    <addaction name="actionLoad"/>
+    <addaction name="separator"/>
+    <addaction name="actionConvert"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
@@ -216,13 +218,16 @@
    <addaction name="menu_Help"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionOpen">
+  <action name="actionLoad">
    <property name="icon">
     <iconset resource="haveibeenpwned-local.qrc">
-     <normaloff>:/images/database.png</normaloff>:/images/database.png</iconset>
+     <normaloff>:/images/fileload.png</normaloff>:/images/fileload.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Open ...</string>
+    <string>&amp;Load ...</string>
+   </property>
+   <property name="statusTip">
+    <string>Load SQLite Database</string>
    </property>
   </action>
   <action name="actionExit">
@@ -233,6 +238,9 @@
    <property name="text">
     <string>E&amp;xit</string>
    </property>
+   <property name="statusTip">
+    <string>Exit HaveIBeenPwned Local</string>
+   </property>
   </action>
   <action name="actionAbout">
    <property name="icon">
@@ -241,6 +249,21 @@
    </property>
    <property name="text">
     <string>&amp;About ...</string>
+   </property>
+   <property name="statusTip">
+    <string>Show Application Details</string>
+   </property>
+  </action>
+  <action name="actionConvert">
+   <property name="icon">
+    <iconset resource="haveibeenpwned-local.qrc">
+     <normaloff>:/images/database.png</normaloff>:/images/database.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Convert ...</string>
+   </property>
+   <property name="statusTip">
+    <string>Convert Hash Text File to SQLite Database</string>
    </property>
   </action>
  </widget>

@@ -48,7 +48,8 @@ protected:
 private slots:
     void on_checkButton_clicked();
     void on_actionExit_triggered();
-    void on_actionOpen_triggered();
+    void on_actionLoad_triggered();
+    void on_actionConvert_triggered();
     void on_actionAbout_triggered();
     void on_passwordLineEdit_textChanged(const QString &arg1);
     void on_browseButton_clicked();
