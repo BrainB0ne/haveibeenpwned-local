@@ -301,19 +301,18 @@ void MainWindow::on_actionLoad_triggered()
 
 void MainWindow::on_actionConvert_triggered()
 {
+    QString appDirPath = QApplication::applicationDirPath();
 #ifdef WIN32
-    if (!QFile::exists("hibp2sqlite.exe"))
-    {
-        QMessageBox::critical(this, APP_TITLE, "Error: Unable to start conversion, hibp2sqlite.exe does not exist!");
-        return;
-    }
+    QString convertToolLocation = QString("%1\\hibp2sqlite.exe").arg(appDirPath);
 #else
-    if (!QFile::exists("./hibp2sqlite-x86_64.AppImage"))
+    QString convertToolLocation = QString("%1/hibp2sqlite").arg(appDirPath);
+#endif
+
+    if (!QFile::exists(convertToolLocation))
     {
-        QMessageBox::critical(this, APP_TITLE, "Error: Unable to start conversion, hibp2sqlite-x86_64.AppImage does not exist!");
+        QMessageBox::critical(this, APP_TITLE, QString("Error: Unable to start conversion, %1 does not exist!").arg(convertToolLocation));
         return;
     }
-#endif
 
     if (mConversionProcess && mConversionProcess->state() == QProcess::Running)
     {
@@ -384,11 +383,7 @@ void MainWindow::on_actionConvert_triggered()
     arguments << mConvertInputFile;
     arguments << mConvertOutputFile;
 
-#ifdef WIN32
-    mConversionProcess->start("hibp2sqlite.exe", arguments);
-#else
-    mConversionProcess->start("./hibp2sqlite-x86_64.AppImage", arguments);
-#endif
+    mConversionProcess->start(convertToolLocation, arguments);
 
     connect(mConversionProcess, SIGNAL(readyReadStandardOutput()),
             this, SLOT(readConversionOutput()));
