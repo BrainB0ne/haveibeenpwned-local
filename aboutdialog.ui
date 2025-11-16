@@ -116,6 +116,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>licenseTextEdit</tabstop>
+  <tabstop>licenseButton</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

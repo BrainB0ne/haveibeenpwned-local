@@ -267,6 +267,17 @@
    </property>
   </action>
  </widget>
+ <tabstops>
+  <tabstop>dbLineEdit</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>passwordLineEdit</tabstop>
+  <tabstop>hashLineEdit</tabstop>
+  <tabstop>fileLineEdit</tabstop>
+  <tabstop>browseButton</tabstop>
+  <tabstop>checkButton</tabstop>
+  <tabstop>outputTextEdit</tabstop>
+  <tabstop>clearButton</tabstop>
+ </tabstops>
  <resources>
   <include location="haveibeenpwned-local.qrc"/>
  </resources>
