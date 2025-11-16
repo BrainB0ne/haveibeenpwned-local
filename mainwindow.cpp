@@ -60,6 +60,8 @@ MainWindow::MainWindow(QWidget *parent)
     {
         ui->checkButton->setText(tr("Check Passwords"));
     }
+
+    ui->passwordLineEdit->setFocus();
 }
 
 MainWindow::~MainWindow()
