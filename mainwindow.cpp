@@ -398,7 +398,7 @@ void MainWindow::readConversionOutput()
     while (mConversionProcess->canReadLine())
     {
         line = mConversionProcess->readLine();
-        ui->outputTextEdit->append(line.remove("\r").remove("\n"));
+        ui->outputTextEdit->append(line.trimmed());
     }
 }
 
