@@ -308,9 +308,9 @@ void MainWindow::on_actionConvert_triggered()
         return;
     }
 #else
-    if (!QFile::exists("hibp2sqlite"))
+    if (!QFile::exists("./hibp2sqlite-x86_64.AppImage"))
     {
-        QMessageBox::critical(this, APP_TITLE, "Error: Unable to start conversion, hibp2sqlite does not exist!");
+        QMessageBox::critical(this, APP_TITLE, "Error: Unable to start conversion, hibp2sqlite-x86_64.AppImage does not exist!");
         return;
     }
 #endif
@@ -387,7 +387,7 @@ void MainWindow::on_actionConvert_triggered()
 #ifdef WIN32
     mConversionProcess->start("hibp2sqlite.exe", arguments);
 #else
-    mConversionProcess->start("./hibp2sqlite", arguments);
+    mConversionProcess->start("./hibp2sqlite-x86_64.AppImage", arguments);
 #endif
 
     connect(mConversionProcess, SIGNAL(readyReadStandardOutput()),
