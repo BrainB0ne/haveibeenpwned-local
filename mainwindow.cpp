@@ -193,6 +193,7 @@ void MainWindow::on_checkButton_clicked()
                         file.close();
 
                         ui->outputTextEdit->append(LINE_SEPARATOR);
+                        ui->outputTextEdit->ensureCursorVisible();
 
                         ResultTableDialog* resTableDialog = new ResultTableDialog(this);
                         if (resTableDialog)
@@ -277,6 +278,8 @@ void MainWindow::processLine(const QString& line)
             mResults.append(result);
         }
     }
+
+    ui->outputTextEdit->ensureCursorVisible();
 }
 
 void MainWindow::on_passwordLineEdit_returnPressed()
@@ -399,16 +402,20 @@ void MainWindow::readConversionOutput()
     {
         line = mConversionProcess->readLine();
         ui->outputTextEdit->append(line.trimmed());
+        ui->outputTextEdit->ensureCursorVisible();
     }
 }
 
 void MainWindow::conversionFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
     ui->outputTextEdit->append(LINE_SEPARATOR);
+    ui->outputTextEdit->ensureCursorVisible();
 
     if (exitStatus == QProcess::NormalExit)
     {
         ui->outputTextEdit->append(QString("SQLite database conversion process exited with exitcode: %1").arg(exitCode));
+        ui->outputTextEdit->append(LINE_SEPARATOR);
+        ui->outputTextEdit->ensureCursorVisible();
 
         if (exitCode == 0)
         {
@@ -424,9 +431,9 @@ void MainWindow::conversionFinished(int exitCode, QProcess::ExitStatus exitStatu
     else
     {
         ui->outputTextEdit->append(QString("Error: SQLite database conversion process exited abnormally with exitcode: %1").arg(exitCode));
+        ui->outputTextEdit->append(LINE_SEPARATOR);
+        ui->outputTextEdit->ensureCursorVisible();
     }
-
-    ui->outputTextEdit->append(LINE_SEPARATOR);
 
     if (mConversionProcess->state() == QProcess::NotRunning)
     {
