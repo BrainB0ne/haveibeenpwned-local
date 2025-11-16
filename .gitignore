@@ -1,9 +1,11 @@
 /debug
 /release
 /build
+/linux/AppDir/usr/bin/haveibeenpwned-local
 
 # Executables
 *.exe
+*.AppImage
 
 # Corel Files
 *.cpt
@@ -458,4 +460,7 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Whitelist folders
+!/linux/AppDir/usr/bin
 
