@@ -51,6 +51,15 @@ MainWindow::MainWindow(QWidget *parent)
     mConversionProcess = nullptr;
     mConvertInputFile = QString();
     mConvertOutputFile = QString();
+
+    if (ui->tabWidget->currentIndex() == 0)
+    {
+        ui->checkButton->setText(tr("Check Password"));
+    }
+    else if (ui->tabWidget->currentIndex() == 1)
+    {
+        ui->checkButton->setText(tr("Check Passwords"));
+    }
 }
 
 MainWindow::~MainWindow()
@@ -101,6 +110,18 @@ void MainWindow::saveSettings()
         mSettings->setValue("Settings/PasswordsListFile", ui->fileLineEdit->text());
         mSettings->setValue("Settings/ConvertInputFile", mConvertInputFile);
         mSettings->setValue("Settings/ConvertOutputFile", mConvertOutputFile);
+    }
+}
+
+void MainWindow::on_tabWidget_currentChanged(int index)
+{
+    if (index == 0)
+    {
+        ui->checkButton->setText(tr("Check Password"));
+    }
+    else if (index == 1)
+    {
+        ui->checkButton->setText(tr("Check Passwords"));
     }
 }
 

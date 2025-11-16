@@ -47,6 +47,7 @@ protected:
     void closeEvent(QCloseEvent *event);
 
 private slots:
+    void on_tabWidget_currentChanged(int index);
     void on_checkButton_clicked();
     void on_actionExit_triggered();
     void on_actionLoad_triggered();

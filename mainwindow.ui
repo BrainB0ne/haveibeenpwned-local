@@ -46,7 +46,7 @@
       </property>
       <widget class="QWidget" name="tab_single">
        <attribute name="title">
-        <string>Single</string>
+        <string>Single Password</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_2">
         <item row="0" column="0">
@@ -84,7 +84,7 @@
       </widget>
       <widget class="QWidget" name="tab_list">
        <attribute name="title">
-        <string>List</string>
+        <string>Passwords List</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_4">
         <item row="0" column="0">
@@ -128,7 +128,7 @@
     <item row="2" column="0" colspan="2">
      <widget class="QPushButton" name="checkButton">
       <property name="text">
-       <string>Check!</string>
+       <string>Check Password</string>
       </property>
       <property name="icon">
        <iconset resource="haveibeenpwned-local.qrc">
