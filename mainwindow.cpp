@@ -421,7 +421,8 @@ void MainWindow::conversionFinished(int exitCode, QProcess::ExitStatus exitStatu
 
             if (retCode == QMessageBox::Yes)
             {
-                ui->dbLineEdit->setText(mConvertOutputFile);
+                mSQLiteDatabase = QDir::toNativeSeparators(mConvertOutputFile);
+                ui->dbLineEdit->setText(mSQLiteDatabase);
             }
         }
     }
