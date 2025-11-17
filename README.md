@@ -36,8 +36,10 @@ Credits to the author of the following article since it gave me the idea to crea
 
 **Screenshots**
 
+**Windows**
 ![haveibeenpwned-local-password-check.png](<./screenshots/haveibeenpwned-local-password-check.png>)
 
+**Linux - LinuxMint Cinnamon**
 ![haveibeenpwned-local-password-check-linux.png](<./screenshots/haveibeenpwned-local-password-check-linux.png>)
 
 And last, but not least... Read the disclaimer below. :)
