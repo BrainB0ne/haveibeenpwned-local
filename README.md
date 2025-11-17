@@ -7,7 +7,8 @@
 - Microsoft Visual Studio 2022
 - Qt SDK 6.9.x / Qt Creator 18
 
-This application can also convert a NTLM-hash text file to a SQLite database by running: hibp2sqlite More information: [https://github.com/BrainB0ne/hibp2sqlite](<https://github.com/BrainB0ne/hibp2sqlite>) or [https://codeberg.org/BrainB0ne/hibp2sqlite](<https://codeberg.org/BrainB0ne/hibp2sqlite>)
+This application can also convert a NTLM-hash text file to a SQLite database by running: hibp2sqlite
+More information: [https://github.com/BrainB0ne/hibp2sqlite](<https://github.com/BrainB0ne/hibp2sqlite>) or [https://codeberg.org/BrainB0ne/hibp2sqlite](<https://codeberg.org/BrainB0ne/hibp2sqlite>)
 
 To obtain the NTLM-hash text file, use PwnedPasswordsDownloader from HaveIBeenPwned.
 
