@@ -1,7 +1,5 @@
 ## Qt GUI application to check passwords against a locally stored HaveIBeenPwned SQLite Database
 
----
-
 **Build Requirements:**
 
 [Windows]
