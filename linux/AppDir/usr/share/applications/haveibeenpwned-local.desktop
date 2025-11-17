@@ -4,5 +4,5 @@ Name=HaveIBeenPwned-Local
 Comment=HaveIBeenPwned Local Password Checker
 Exec=haveibeenpwned-local
 Icon=haveibeenpwned-local
-Categories=Office;
+Categories=Utility;
 
