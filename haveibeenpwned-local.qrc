@@ -8,5 +8,7 @@
         <file>images/settings.png</file>
         <file>images/clear.png</file>
         <file>images/eye.png</file>
+        <file>images/clipboard.png</file>
+        <file>images/erase.png</file>
     </qresource>
 </RCC>
