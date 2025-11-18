@@ -36,7 +36,7 @@ public:
     void setResults(const QList<PwnedResult*> results);
 
 private slots:
-    void on_okButtonBox_accepted();
+    void on_resultTableWidget_customContextMenuRequested(const QPoint &pos);
 
 private:
     Ui::ResultTableDialog *ui;

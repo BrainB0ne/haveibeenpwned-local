@@ -18,6 +18,9 @@
 #include "resulttabledialog.h"
 #include "ui_resulttabledialog.h"
 
+#include <QMenu>
+#include <QClipboard>
+
 ResultTableDialog::ResultTableDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ResultTableDialog)
@@ -28,11 +31,6 @@ ResultTableDialog::ResultTableDialog(QWidget *parent) :
 ResultTableDialog::~ResultTableDialog()
 {
     delete ui;
-}
-
-void ResultTableDialog::on_okButtonBox_accepted()
-{
-    close();
 }
 
 void ResultTableDialog::setResults(const QList<PwnedResult*> results)
@@ -63,3 +61,38 @@ void ResultTableDialog::setResults(const QList<PwnedResult*> results)
 
     ui->resultTableWidget->resizeColumnsToContents();
 }
+
+void ResultTableDialog::on_resultTableWidget_customContextMenuRequested(const QPoint &pos)
+{
+    int row = ui->resultTableWidget->rowAt(pos.y());
+    int col = ui->resultTableWidget->columnAt(pos.x());
+
+    if (row < 0 || col < 0)
+        return;
+
+    QMenu* contextMenu = new QMenu(this);
+
+    if (contextMenu)
+    {
+        QAction* copyPassword = contextMenu->addAction(tr("Copy Password"));
+        QAction* copyHash = contextMenu->addAction(tr("Copy Hash"));
+
+        QAction* act = contextMenu->exec(QCursor::pos());
+
+        if (act == copyPassword)
+        {
+            QString password = ui->resultTableWidget->item(row, 0)->text();
+            QClipboard *clipboard = QGuiApplication::clipboard();
+            clipboard->setText(password);
+        }
+        else if (act == copyHash)
+        {
+            QString hash = ui->resultTableWidget->item(row, 1)->text();
+            QClipboard *clipboard = QGuiApplication::clipboard();
+            clipboard->setText(hash);
+        }
+
+        contextMenu->deleteLater();
+    }
+}
+
