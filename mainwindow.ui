@@ -214,7 +214,24 @@
     </property>
     <addaction name="actionAbout"/>
    </widget>
+   <widget class="QMenu" name="menu_Tools">
+    <property name="title">
+     <string>&amp;Tools</string>
+    </property>
+    <widget class="QMenu" name="menu_Clipboard">
+     <property name="title">
+      <string>&amp;Clipboard</string>
+     </property>
+     <property name="icon">
+      <iconset resource="haveibeenpwned-local.qrc">
+       <normaloff>:/images/clipboard.png</normaloff>:/images/clipboard.png</iconset>
+     </property>
+     <addaction name="actionClipboardClear"/>
+    </widget>
+    <addaction name="menu_Clipboard"/>
+   </widget>
    <addaction name="menu_File"/>
+   <addaction name="menu_Tools"/>
    <addaction name="menu_Help"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -264,6 +281,15 @@
    </property>
    <property name="statusTip">
     <string>Convert Hash Text File to SQLite Database</string>
+   </property>
+  </action>
+  <action name="actionClipboardClear">
+   <property name="icon">
+    <iconset resource="haveibeenpwned-local.qrc">
+     <normaloff>:/images/erase.png</normaloff>:/images/erase.png</iconset>
+   </property>
+   <property name="text">
+    <string>Clear</string>
    </property>
   </action>
  </widget>

@@ -31,6 +31,7 @@
 #include <QSqlQuery>
 #include <QCloseEvent>
 #include <QMessageBox>
+#include <QClipboard>
 
 #define LINE_SEPARATOR "----------------------------------------------------------------------"
 #define APP_TITLE "HaveIBeenPwned Local"
@@ -462,6 +463,16 @@ void MainWindow::conversionFinished(int exitCode, QProcess::ExitStatus exitStatu
     {
         delete mConversionProcess;
         mConversionProcess = nullptr;
+    }
+}
+
+void MainWindow::on_actionClipboardClear_triggered()
+{
+    QClipboard *clipboard = QGuiApplication::clipboard();
+
+    if (clipboard)
+    {
+        clipboard->clear();
     }
 }
 

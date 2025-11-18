@@ -52,6 +52,7 @@ private slots:
     void on_actionExit_triggered();
     void on_actionLoad_triggered();
     void on_actionConvert_triggered();
+    void on_actionClipboardClear_triggered();
     void on_actionAbout_triggered();
     void on_passwordLineEdit_textChanged(const QString &arg1);
     void on_browseButton_clicked();
