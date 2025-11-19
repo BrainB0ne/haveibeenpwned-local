@@ -291,6 +291,9 @@
    <property name="text">
     <string>Clear</string>
    </property>
+   <property name="statusTip">
+    <string>Clear Clipboard</string>
+   </property>
   </action>
  </widget>
  <tabstops>
