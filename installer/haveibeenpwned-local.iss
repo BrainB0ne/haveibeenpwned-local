@@ -20,7 +20,7 @@ AppPublisher={#MyAppPublisher}
 ;AppUpdatesURL={#MyAppURL}
 DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
-LicenseFile=license.txt
+LicenseFile=LICENSE
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
 OutputBaseFilename=haveibeenpwned-local-{#MyAppVersion}-x64-setup
@@ -50,6 +50,9 @@ Source: "Qt6Network.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Qt6Sql.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Qt6Svg.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Qt6Widgets.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "LICENSE"; DestDir: "{app}"; Flags: ignoreversion
+Source: "ICONS-LICENSE"; DestDir: "{app}"; Flags: ignoreversion
+Source: "README.txt"; DestDir: "{app}"; Flags: ignoreversion isreadme
 Source: "generic\qtuiotouchplugin.dll"; DestDir: "{app}\generic"; Flags: ignoreversion
 Source: "iconengines\qsvgicon.dll"; DestDir: "{app}\iconengines"; Flags: ignoreversion
 Source: "imageformats\qgif.dll"; DestDir: "{app}\imageformats"; Flags: ignoreversion
