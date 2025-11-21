@@ -43,7 +43,7 @@
         </property>
         <property name="icon">
          <iconset resource="haveibeenpwned-local.qrc">
-          <normaloff>:/images/fileload.png</normaloff>:/images/fileload.png</iconset>
+          <normaloff>:/images/tabler/fileload.png</normaloff>:/images/tabler/fileload.png</iconset>
         </property>
        </widget>
       </item>
@@ -64,7 +64,7 @@
         </property>
         <property name="icon">
          <iconset resource="haveibeenpwned-local.qrc">
-          <normaloff>:/images/fileload.png</normaloff>:/images/fileload.png</iconset>
+          <normaloff>:/images/tabler/fileload.png</normaloff>:/images/tabler/fileload.png</iconset>
         </property>
        </widget>
       </item>

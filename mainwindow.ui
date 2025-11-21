@@ -104,7 +104,7 @@
           </property>
           <property name="icon">
            <iconset resource="haveibeenpwned-local.qrc">
-            <normaloff>:/images/fileload.png</normaloff>:/images/fileload.png</iconset>
+            <normaloff>:/images/tabler/fileload.png</normaloff>:/images/tabler/fileload.png</iconset>
           </property>
          </widget>
         </item>
@@ -132,7 +132,7 @@
       </property>
       <property name="icon">
        <iconset resource="haveibeenpwned-local.qrc">
-        <normaloff>:/images/eye.png</normaloff>:/images/eye.png</iconset>
+        <normaloff>:/images/tabler/eye.png</normaloff>:/images/tabler/eye.png</iconset>
       </property>
      </widget>
     </item>
@@ -155,7 +155,7 @@
          </property>
          <property name="icon">
           <iconset resource="haveibeenpwned-local.qrc">
-           <normaloff>:/images/clear.png</normaloff>:/images/clear.png</iconset>
+           <normaloff>:/images/tabler/clear.png</normaloff>:/images/tabler/clear.png</iconset>
          </property>
         </widget>
        </item>
@@ -195,7 +195,7 @@
      <x>0</x>
      <y>0</y>
      <width>600</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_File">
@@ -224,7 +224,7 @@
      </property>
      <property name="icon">
       <iconset resource="haveibeenpwned-local.qrc">
-       <normaloff>:/images/clipboard.png</normaloff>:/images/clipboard.png</iconset>
+       <normaloff>:/images/tabler/clipboard.png</normaloff>:/images/tabler/clipboard.png</iconset>
      </property>
      <addaction name="actionClipboardClear"/>
     </widget>
@@ -238,7 +238,7 @@
   <action name="actionLoad">
    <property name="icon">
     <iconset resource="haveibeenpwned-local.qrc">
-     <normaloff>:/images/fileload.png</normaloff>:/images/fileload.png</iconset>
+     <normaloff>:/images/tabler/fileload.png</normaloff>:/images/tabler/fileload.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Load ...</string>
@@ -250,7 +250,7 @@
   <action name="actionExit">
    <property name="icon">
     <iconset resource="haveibeenpwned-local.qrc">
-     <normaloff>:/images/exit.png</normaloff>:/images/exit.png</iconset>
+     <normaloff>:/images/tabler/exit.png</normaloff>:/images/tabler/exit.png</iconset>
    </property>
    <property name="text">
     <string>E&amp;xit</string>
@@ -262,7 +262,7 @@
   <action name="actionAbout">
    <property name="icon">
     <iconset resource="haveibeenpwned-local.qrc">
-     <normaloff>:/images/about.png</normaloff>:/images/about.png</iconset>
+     <normaloff>:/images/tabler/about.png</normaloff>:/images/tabler/about.png</iconset>
    </property>
    <property name="text">
     <string>&amp;About ...</string>
@@ -274,7 +274,7 @@
   <action name="actionConvert">
    <property name="icon">
     <iconset resource="haveibeenpwned-local.qrc">
-     <normaloff>:/images/database.png</normaloff>:/images/database.png</iconset>
+     <normaloff>:/images/tabler/database.png</normaloff>:/images/tabler/database.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Convert ...</string>
@@ -286,7 +286,7 @@
   <action name="actionClipboardClear">
    <property name="icon">
     <iconset resource="haveibeenpwned-local.qrc">
-     <normaloff>:/images/erase.png</normaloff>:/images/erase.png</iconset>
+     <normaloff>:/images/tabler/erase.png</normaloff>:/images/tabler/erase.png</iconset>
    </property>
    <property name="text">
     <string>Clear</string>
