@@ -36,6 +36,10 @@ Credits to the author of the following article since it gave me the idea to crea
 
 [creating-a-local-version-of-the-haveibeenpwned-password-database-with-python-and-sqlite](<https://medium.com/analytics-vidhya/creating-a-local-version-of-the-haveibeenpwned-password-database-with-python-and-sqlite-918a7b6a238a> "creating-a-local-version-of-the-haveibeenpwned-password-database-with-python-and-sqlite")
 
+**Icons**
+
+Iconset: [Tabler Icons](<https://github.com/tabler/tabler-icons>) - [MIT License](<./images/tabler/LICENSE-ICONS>)
+
 **Screenshots**
 
 ![haveibeenpwned-local-password-check.png](<./screenshots/haveibeenpwned-local-password-check.png>)
