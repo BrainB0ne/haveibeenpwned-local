@@ -51,7 +51,7 @@ Source: "Qt6Sql.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Qt6Svg.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Qt6Widgets.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "LICENSE"; DestDir: "{app}"; Flags: ignoreversion
-Source: "ICONS-LICENSE"; DestDir: "{app}"; Flags: ignoreversion
+Source: "LICENSE-ICONS"; DestDir: "{app}"; Flags: ignoreversion
 Source: "README.txt"; DestDir: "{app}"; Flags: ignoreversion isreadme
 Source: "generic\qtuiotouchplugin.dll"; DestDir: "{app}\generic"; Flags: ignoreversion
 Source: "iconengines\qsvgicon.dll"; DestDir: "{app}\iconengines"; Flags: ignoreversion
