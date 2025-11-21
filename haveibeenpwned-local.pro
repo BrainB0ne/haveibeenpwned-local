@@ -26,6 +26,7 @@ CONFIG += c++17
 SOURCES += \
     aboutdialog.cpp \
     convertdialog.cpp \
+    licensedialog.cpp \
     main.cpp \
     mainwindow.cpp \
     pwnedresult.cpp \
@@ -36,6 +37,7 @@ HEADERS += \
     convertdialog.h \
     haveibeenpwned-local.rc \
     aboutdialog.h \
+    licensedialog.h \
     mainwindow.h \
     pwnedresult.h \
     resultdialog.h \
@@ -44,6 +46,7 @@ HEADERS += \
 FORMS += \
     aboutdialog.ui \
     convertdialog.ui \
+    licensedialog.ui \
     mainwindow.ui \
     resultdialog.ui \
     resulttabledialog.ui
