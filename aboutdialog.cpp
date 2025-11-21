@@ -17,6 +17,7 @@
 
 #include "aboutdialog.h"
 #include "ui_aboutdialog.h"
+#include "licensedialog.h"
 
 AboutDialog::AboutDialog(QWidget *parent) :
     QDialog(parent),
@@ -37,3 +38,17 @@ void AboutDialog::on_licenseButton_clicked()
 {
     QApplication::aboutQt();
 }
+
+void AboutDialog::on_iconsLicenseButton_clicked()
+{
+    LicenseDialog* dlg = new LicenseDialog(this);
+
+    if (dlg)
+    {
+        dlg->initialize();
+        dlg->exec();
+
+        dlg->deleteLater();
+    }
+}
+

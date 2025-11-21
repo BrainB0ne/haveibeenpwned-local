@@ -34,6 +34,7 @@ public:
 
 private slots:
     void on_licenseButton_clicked();
+    void on_iconsLicenseButton_clicked();
 
 private:
     Ui::AboutDialog *ui;
