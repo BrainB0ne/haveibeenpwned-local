@@ -10,5 +10,6 @@
         <file>images/tabler/eye.png</file>
         <file>images/tabler/clipboard.png</file>
         <file>images/tabler/erase.png</file>
+        <file>images/qt/qt.png</file>
     </qresource>
 </RCC>
