@@ -1,14 +1,7 @@
 Qt GUI application to check passwords against a locally stored HaveIBeenPwned SQLite Database
 ---------------------------------------------------------------------------------------------
 
-Build Requirements:
-
-[Windows]
-- Microsoft Visual Studio 2022
-- Qt SDK 6.9.x / Qt Creator 18
-
 This application can also convert a NTLM-hash text file to a SQLite database by running: hibp2sqlite
-More information: https://github.com/BrainB0ne/hibp2sqlite or https://codeberg.org/BrainB0ne/hibp2sqlite
 
 To obtain the NTLM-hash text file, use PwnedPasswordsDownloader from HaveIBeenPwned.
 
@@ -25,9 +18,6 @@ Note: Make sure hibp2sqlite.exe is located in the same folder as haveibeenpwned-
 Caution!
 Make sure there is enough free space on your drive since this file is at the time of writing ~70 GB.
 The conversion to SQLite with hibp2sqlite takes another ~180 GB for the SQLite database file.
-
-Credits to the author of the following article since it gave me the idea to create this tool.
-https://medium.com/analytics-vidhya/creating-a-local-version-of-the-haveibeenpwned-password-database-with-python-and-sqlite-918a7b6a238a
 
 And last, but not least... Read the disclaimer below. :)
 
