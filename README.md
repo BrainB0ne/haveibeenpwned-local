@@ -5,7 +5,7 @@
 [Windows]
 
 - Microsoft Visual Studio 2022
-- Qt SDK 6.9.x / Qt Creator 18
+- Qt SDK 6.10.x / Qt Creator 18
 
 This application can also convert a NTLM-hash text file to a SQLite database by running: hibp2sqlite.
 

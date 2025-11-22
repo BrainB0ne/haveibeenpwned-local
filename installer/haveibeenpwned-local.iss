@@ -41,6 +41,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 [Files]
 Source: "{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
 Source: "hibp2sqlite.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "icuuc.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D3Dcompiler_47.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "opengl32sw.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Qt6Core.dll"; DestDir: "{app}"; Flags: ignoreversion
@@ -65,12 +66,12 @@ Source: "imageformats\qwbmp.dll"; DestDir: "{app}\imageformats"; Flags: ignoreve
 Source: "imageformats\qwebp.dll"; DestDir: "{app}\imageformats"; Flags: ignoreversion
 Source: "networkinformation\qnetworklistmanager.dll"; DestDir: "{app}\networkinformation"; Flags: ignoreversion
 Source: "platforms\qwindows.dll"; DestDir: "{app}\platforms"; Flags: ignoreversion
-Source: "sqldrivers\qsqlibase.dll"; DestDir: "{app}\sqldrivers"; Flags: ignoreversion
+;Source: "sqldrivers\qsqlibase.dll"; DestDir: "{app}\sqldrivers"; Flags: ignoreversion
 Source: "sqldrivers\qsqlite.dll"; DestDir: "{app}\sqldrivers"; Flags: ignoreversion
-Source: "sqldrivers\qsqlmimer.dll"; DestDir: "{app}\sqldrivers"; Flags: ignoreversion
-Source: "sqldrivers\qsqloci.dll"; DestDir: "{app}\sqldrivers"; Flags: ignoreversion
-Source: "sqldrivers\qsqlodbc.dll"; DestDir: "{app}\sqldrivers"; Flags: ignoreversion
-Source: "sqldrivers\qsqlpsql.dll"; DestDir: "{app}\sqldrivers"; Flags: ignoreversion
+;Source: "sqldrivers\qsqlmimer.dll"; DestDir: "{app}\sqldrivers"; Flags: ignoreversion
+;Source: "sqldrivers\qsqloci.dll"; DestDir: "{app}\sqldrivers"; Flags: ignoreversion
+;Source: "sqldrivers\qsqlodbc.dll"; DestDir: "{app}\sqldrivers"; Flags: ignoreversion
+;Source: "sqldrivers\qsqlpsql.dll"; DestDir: "{app}\sqldrivers"; Flags: ignoreversion
 Source: "styles\qmodernwindowsstyle.dll"; DestDir: "{app}\styles"; Flags: ignoreversion
 Source: "tls\qcertonlybackend.dll"; DestDir: "{app}\tls"; Flags: ignoreversion
 Source: "tls\qschannelbackend.dll"; DestDir: "{app}\tls"; Flags: ignoreversion
