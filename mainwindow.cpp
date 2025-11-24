@@ -78,14 +78,19 @@ MainWindow::~MainWindow()
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    saveSettings();
-
     if (mConversionProcess && mConversionProcess->state() == QProcess::Running)
     {
         event->ignore();
         QMessageBox::warning(this, APP_TITLE, "Warning: Can't exit application now, database conversion process still running!");
         return;
     }
+
+    if (mPrefClearClipboardOnExit)
+    {
+        on_actionClipboardClear_triggered();
+    }
+
+    saveSettings();
 
     QMainWindow::closeEvent(event);
 }
@@ -159,10 +164,19 @@ void MainWindow::on_checkButton_clicked()
         {
             if (ui->tabWidget->currentIndex() == 0)
             {
-                ui->outputTextEdit->append(
-                            QString("Checking Password: %1 | Hash (NTLM): %2")
-                            .arg(ui->passwordLineEdit->text())
-                            .arg(ui->hashLineEdit->text()));
+                if (mPrefOutputHideCheckedPasswords)
+                {
+                    ui->outputTextEdit->append(
+                                QString("Checking Hash (NTLM): %1")
+                                .arg(ui->hashLineEdit->text()));
+                }
+                else
+                {
+                    ui->outputTextEdit->append(
+                                QString("Checking Password: %1 | Hash (NTLM): %2")
+                                .arg(ui->passwordLineEdit->text())
+                                .arg(ui->hashLineEdit->text()));
+                }
 
                 QSqlQuery query;
                 query.prepare("SELECT prevalence FROM passwords WHERE hash=?");
@@ -279,10 +293,20 @@ void MainWindow::processLine(const QString& line)
     if (query.first())
     {
         QString prevalence = query.value(0).toString();
-        ui->outputTextEdit->append(QString("<font color='red'>Pwned! Password: %1 | NTLM: %2 | Seen %3 times.</font>")
-                                              .arg(line)
-                                              .arg(strNTLMHash)
-                                              .arg(prevalence));
+
+        if (mPrefOutputHideCheckedPasswords)
+        {
+            ui->outputTextEdit->append(QString("<font color='red'>Pwned! NTLM: %1 | Seen %2 times.</font>")
+                                                  .arg(strNTLMHash)
+                                                  .arg(prevalence));
+        }
+        else
+        {
+            ui->outputTextEdit->append(QString("<font color='red'>Pwned! Password: %1 | NTLM: %2 | Seen %3 times.</font>")
+                                                  .arg(line)
+                                                  .arg(strNTLMHash)
+                                                  .arg(prevalence));
+        }
 
         PwnedResult* result = new PwnedResult(this);
         if (result)
@@ -297,9 +321,17 @@ void MainWindow::processLine(const QString& line)
     }
     else
     {
-        ui->outputTextEdit->append(QString("Not pwned! Password: %1 | NTLM: %2")
-                                              .arg(line)
-                                              .arg(strNTLMHash));
+        if (mPrefOutputHideCheckedPasswords)
+        {
+            ui->outputTextEdit->append(QString("Not pwned! NTLM: %1")
+                                                  .arg(strNTLMHash));
+        }
+        else
+        {
+            ui->outputTextEdit->append(QString("Not pwned! Password: %1 | NTLM: %2")
+                                                  .arg(line)
+                                                  .arg(strNTLMHash));
+        }
 
         PwnedResult* result = new PwnedResult(this);
         if (result)
