@@ -29,6 +29,7 @@ SOURCES += \
     licensedialog.cpp \
     main.cpp \
     mainwindow.cpp \
+    preferencesdialog.cpp \
     pwnedresult.cpp \
     resultdialog.cpp \
     resulttabledialog.cpp
@@ -39,6 +40,7 @@ HEADERS += \
     aboutdialog.h \
     licensedialog.h \
     mainwindow.h \
+    preferencesdialog.h \
     pwnedresult.h \
     resultdialog.h \
     resulttabledialog.h
@@ -48,6 +50,7 @@ FORMS += \
     convertdialog.ui \
     licensedialog.ui \
     mainwindow.ui \
+    preferencesdialog.ui \
     resultdialog.ui \
     resulttabledialog.ui
 
