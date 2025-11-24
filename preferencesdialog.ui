@@ -37,7 +37,7 @@
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
       <item row="0" column="0">
-       <widget class="QCheckBox" name="clearClipboardOnExitCheckBox_2">
+       <widget class="QCheckBox" name="clearClipboardOnExitCheckBox">
         <property name="text">
          <string>Clear Clipboard on Exit</string>
         </property>
@@ -65,7 +65,7 @@
       <enum>Qt::Orientation::Horizontal</enum>
      </property>
      <property name="standardButtons">
-      <set>QDialogButtonBox::StandardButton::Apply|QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
+      <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
      </property>
     </widget>
    </item>

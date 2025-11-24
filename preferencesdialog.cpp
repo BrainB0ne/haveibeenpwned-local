@@ -29,3 +29,23 @@ PreferencesDialog::~PreferencesDialog()
 {
     delete ui;
 }
+
+void PreferencesDialog::setOutputHideCheckedPasswords(bool checked)
+{
+    ui->hideCheckedPasswordsCheckBox->setChecked(checked);
+}
+
+bool PreferencesDialog::getOutputHideCheckedPasswords()
+{
+    return ui->hideCheckedPasswordsCheckBox->isChecked();
+}
+
+void PreferencesDialog::setClearClipboardOnExit(bool checked)
+{
+    ui->clearClipboardOnExitCheckBox->setChecked(checked);
+}
+
+bool PreferencesDialog::getClearClipboardOnExit()
+{
+    return ui->clearClipboardOnExitCheckBox->isChecked();
+}

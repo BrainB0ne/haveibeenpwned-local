@@ -473,7 +473,14 @@ void MainWindow::on_actionPreferences_triggered()
 
     if (preferencesDlg)
     {
-        preferencesDlg->exec();
+        // TODO: Load Preferences from QSettings file.
+
+        if (preferencesDlg->exec() == QDialog::Accepted)
+        {
+            // TODO: Store Preferences in QSettings file.
+        }
+
+        preferencesDlg->deleteLater();
     }
 }
 

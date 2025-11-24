@@ -32,6 +32,12 @@ public:
     explicit PreferencesDialog(QWidget *parent = nullptr);
     ~PreferencesDialog();
 
+    void setOutputHideCheckedPasswords(bool checked);
+    bool getOutputHideCheckedPasswords();
+
+    void setClearClipboardOnExit(bool checked);
+    bool getClearClipboardOnExit();
+
 private:
     Ui::PreferencesDialog *ui;
 };
