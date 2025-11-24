@@ -23,6 +23,7 @@
 #include "resulttabledialog.h"
 #include "pwnedresult.h"
 #include "convertdialog.h"
+#include "preferencesdialog.h"
 
 #include <QCryptographicHash>
 #include <QStringEncoder>
@@ -463,6 +464,16 @@ void MainWindow::conversionFinished(int exitCode, QProcess::ExitStatus exitStatu
     {
         delete mConversionProcess;
         mConversionProcess = nullptr;
+    }
+}
+
+void MainWindow::on_actionPreferences_triggered()
+{
+    PreferencesDialog* preferencesDlg = new PreferencesDialog(this);
+
+    if (preferencesDlg)
+    {
+        preferencesDlg->exec();
     }
 }
 
