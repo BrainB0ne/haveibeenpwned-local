@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "HaveIBeenPwned-Local"
-#define MyAppVersion "0.1.0"
+#define MyAppVersion "0.2.0"
 #define MyAppPublisher "BrainByteZ"
 ;#define MyAppURL "https://www.brainbytez.nl/"
 #define MyAppExeName "haveibeenpwned-local.exe"
@@ -41,7 +41,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 [Files]
 Source: "{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
 Source: "hibp2sqlite.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "icuuc.dll"; DestDir: "{app}"; Flags: ignoreversion
+;Source: "icuuc.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D3Dcompiler_47.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "opengl32sw.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Qt6Core.dll"; DestDir: "{app}"; Flags: ignoreversion
