@@ -51,8 +51,11 @@ MainWindow::MainWindow(QWidget *parent)
 
     mSettings = nullptr;
     mConversionProcess = nullptr;
+
     mConvertInputFile = QString();
     mConvertOutputFile = QString();
+    mPrefOutputHideCheckedPasswords = false;
+    mPrefClearClipboardOnExit = false;
 
     if (ui->tabWidget->currentIndex() == 0)
     {
@@ -101,6 +104,9 @@ void MainWindow::loadSettings()
 
         mConvertInputFile = mSettings->value("Settings/ConvertInputFile", QString()).toString();
         mConvertOutputFile = mSettings->value("Settings/ConvertOutputFile", QString()).toString();
+
+        mPrefOutputHideCheckedPasswords = mSettings->value("Settings/OutputHideCheckedPasswords", false).toBool();
+        mPrefClearClipboardOnExit = mSettings->value("Settings/ClearClipboardOnExit", false).toBool();
     }
 
     updateHash(ui->passwordLineEdit->text());
@@ -114,6 +120,9 @@ void MainWindow::saveSettings()
         mSettings->setValue("Settings/PasswordsListFile", ui->fileLineEdit->text());
         mSettings->setValue("Settings/ConvertInputFile", mConvertInputFile);
         mSettings->setValue("Settings/ConvertOutputFile", mConvertOutputFile);
+
+        mSettings->setValue("Settings/OutputHideCheckedPasswords", mPrefOutputHideCheckedPasswords);
+        mSettings->setValue("Settings/ClearClipboardOnExit", mPrefClearClipboardOnExit);
     }
 }
 
@@ -473,11 +482,13 @@ void MainWindow::on_actionPreferences_triggered()
 
     if (preferencesDlg)
     {
-        // TODO: Load Preferences from QSettings file.
+        preferencesDlg->setOutputHideCheckedPasswords(mPrefOutputHideCheckedPasswords);
+        preferencesDlg->setClearClipboardOnExit(mPrefClearClipboardOnExit);
 
         if (preferencesDlg->exec() == QDialog::Accepted)
         {
-            // TODO: Store Preferences in QSettings file.
+            mPrefOutputHideCheckedPasswords = preferencesDlg->getOutputHideCheckedPasswords();
+            mPrefClearClipboardOnExit = preferencesDlg->getClearClipboardOnExit();
         }
 
         preferencesDlg->deleteLater();
