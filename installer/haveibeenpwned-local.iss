@@ -31,6 +31,7 @@ SolidCompression=yes
 WizardStyle=classic
 ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
+VersionInfoVersion=0.2.0.0
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
