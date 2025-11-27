@@ -10,8 +10,10 @@
         <file>images/tabler/eye.png</file>
         <file>images/tabler/clipboard.png</file>
         <file>images/tabler/erase.png</file>
-        <file>images/tabler/LICENSE-ICONS</file>
         <file>images/tabler/brand-tabler.png</file>
+        <file>images/tabler/hash.png</file>
+        <file>images/tabler/password.png</file>
+        <file>images/tabler/LICENSE-ICONS</file>
         <file>images/qt/qt.png</file>
     </qresource>
 </RCC>
