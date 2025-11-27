@@ -23,6 +23,7 @@ DisableProgramGroupPage=yes
 LicenseFile=AppDir\LICENSE
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
+OutputDir=Release
 OutputBaseFilename=haveibeenpwned-local-{#MyAppVersion}-x64-setup
 SetupIconFile=AppDir\logo.ico
 UninstallDisplayIcon={app}\{#MyAppExeName}
@@ -32,6 +33,7 @@ WizardStyle=classic
 ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
 VersionInfoVersion=0.2.0.0
+Uninstallable=yes
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
