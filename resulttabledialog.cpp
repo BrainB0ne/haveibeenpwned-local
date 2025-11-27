@@ -74,8 +74,8 @@ void ResultTableDialog::on_resultTableWidget_customContextMenuRequested(const QP
 
     if (contextMenu)
     {
-        QAction* copyPassword = contextMenu->addAction(tr("Copy Password"));
-        QAction* copyHash = contextMenu->addAction(tr("Copy Hash"));
+        QAction* copyPassword = contextMenu->addAction(QIcon(":/images/tabler/password.png"), tr("Copy Password"));
+        QAction* copyHash = contextMenu->addAction(QIcon(":/images/tabler/hash.png"), tr("Copy Hash"));
 
         QAction* act = contextMenu->exec(QCursor::pos());
 
