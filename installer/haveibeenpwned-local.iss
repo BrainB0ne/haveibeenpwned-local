@@ -20,11 +20,11 @@ AppPublisher={#MyAppPublisher}
 ;AppUpdatesURL={#MyAppURL}
 DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
-LicenseFile=LICENSE
+LicenseFile=AppDir\LICENSE
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
 OutputBaseFilename=haveibeenpwned-local-{#MyAppVersion}-x64-setup
-SetupIconFile=logo.ico
+SetupIconFile=AppDir\logo.ico
 UninstallDisplayIcon={app}\{#MyAppExeName}
 Compression=lzma
 SolidCompression=yes
@@ -39,42 +39,42 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "hibp2sqlite.exe"; DestDir: "{app}"; Flags: ignoreversion
-;Source: "icuuc.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D3Dcompiler_47.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "opengl32sw.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "Qt6Core.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "Qt6Gui.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "Qt6Network.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "Qt6Sql.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "Qt6Svg.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "Qt6Widgets.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "LICENSE"; DestDir: "{app}"; Flags: ignoreversion
-Source: "LICENSE-ICONS"; DestDir: "{app}"; Flags: ignoreversion
-Source: "README.txt"; DestDir: "{app}"; Flags: ignoreversion isreadme
-Source: "generic\qtuiotouchplugin.dll"; DestDir: "{app}\generic"; Flags: ignoreversion
-Source: "iconengines\qsvgicon.dll"; DestDir: "{app}\iconengines"; Flags: ignoreversion
-Source: "imageformats\qgif.dll"; DestDir: "{app}\imageformats"; Flags: ignoreversion
-Source: "imageformats\qicns.dll"; DestDir: "{app}\imageformats"; Flags: ignoreversion
-Source: "imageformats\qico.dll"; DestDir: "{app}\imageformats"; Flags: ignoreversion
-Source: "imageformats\qjpeg.dll"; DestDir: "{app}\imageformats"; Flags: ignoreversion
-Source: "imageformats\qsvg.dll"; DestDir: "{app}\imageformats"; Flags: ignoreversion
-Source: "imageformats\qtga.dll"; DestDir: "{app}\imageformats"; Flags: ignoreversion
-Source: "imageformats\qtiff.dll"; DestDir: "{app}\imageformats"; Flags: ignoreversion
-Source: "imageformats\qwbmp.dll"; DestDir: "{app}\imageformats"; Flags: ignoreversion
-Source: "imageformats\qwebp.dll"; DestDir: "{app}\imageformats"; Flags: ignoreversion
-Source: "networkinformation\qnetworklistmanager.dll"; DestDir: "{app}\networkinformation"; Flags: ignoreversion
-Source: "platforms\qwindows.dll"; DestDir: "{app}\platforms"; Flags: ignoreversion
-;Source: "sqldrivers\qsqlibase.dll"; DestDir: "{app}\sqldrivers"; Flags: ignoreversion
-Source: "sqldrivers\qsqlite.dll"; DestDir: "{app}\sqldrivers"; Flags: ignoreversion
-;Source: "sqldrivers\qsqlmimer.dll"; DestDir: "{app}\sqldrivers"; Flags: ignoreversion
-;Source: "sqldrivers\qsqloci.dll"; DestDir: "{app}\sqldrivers"; Flags: ignoreversion
-;Source: "sqldrivers\qsqlodbc.dll"; DestDir: "{app}\sqldrivers"; Flags: ignoreversion
-;Source: "sqldrivers\qsqlpsql.dll"; DestDir: "{app}\sqldrivers"; Flags: ignoreversion
-Source: "styles\qmodernwindowsstyle.dll"; DestDir: "{app}\styles"; Flags: ignoreversion
-Source: "tls\qcertonlybackend.dll"; DestDir: "{app}\tls"; Flags: ignoreversion
-Source: "tls\qschannelbackend.dll"; DestDir: "{app}\tls"; Flags: ignoreversion
+Source: "AppDir\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "AppDir\hibp2sqlite.exe"; DestDir: "{app}"; Flags: ignoreversion
+;Source: "AppDir\icuuc.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "AppDir\D3Dcompiler_47.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "AppDir\opengl32sw.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "AppDir\Qt6Core.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "AppDir\Qt6Gui.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "AppDir\Qt6Network.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "AppDir\Qt6Sql.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "AppDir\Qt6Svg.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "AppDir\Qt6Widgets.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "AppDir\LICENSE"; DestDir: "{app}"; Flags: ignoreversion
+Source: "AppDir\LICENSE-ICONS"; DestDir: "{app}"; Flags: ignoreversion
+Source: "AppDir\README.txt"; DestDir: "{app}"; Flags: ignoreversion isreadme
+Source: "AppDir\generic\qtuiotouchplugin.dll"; DestDir: "{app}\generic"; Flags: ignoreversion
+Source: "AppDir\iconengines\qsvgicon.dll"; DestDir: "{app}\iconengines"; Flags: ignoreversion
+Source: "AppDir\imageformats\qgif.dll"; DestDir: "{app}\imageformats"; Flags: ignoreversion
+Source: "AppDir\imageformats\qicns.dll"; DestDir: "{app}\imageformats"; Flags: ignoreversion
+Source: "AppDir\imageformats\qico.dll"; DestDir: "{app}\imageformats"; Flags: ignoreversion
+Source: "AppDir\imageformats\qjpeg.dll"; DestDir: "{app}\imageformats"; Flags: ignoreversion
+Source: "AppDir\imageformats\qsvg.dll"; DestDir: "{app}\imageformats"; Flags: ignoreversion
+Source: "AppDir\imageformats\qtga.dll"; DestDir: "{app}\imageformats"; Flags: ignoreversion
+Source: "AppDir\imageformats\qtiff.dll"; DestDir: "{app}\imageformats"; Flags: ignoreversion
+Source: "AppDir\imageformats\qwbmp.dll"; DestDir: "{app}\imageformats"; Flags: ignoreversion
+Source: "AppDir\imageformats\qwebp.dll"; DestDir: "{app}\imageformats"; Flags: ignoreversion
+Source: "AppDir\networkinformation\qnetworklistmanager.dll"; DestDir: "{app}\networkinformation"; Flags: ignoreversion
+Source: "AppDir\platforms\qwindows.dll"; DestDir: "{app}\platforms"; Flags: ignoreversion
+;Source: "AppDir\sqldrivers\qsqlibase.dll"; DestDir: "{app}\sqldrivers"; Flags: ignoreversion
+Source: "AppDir\sqldrivers\qsqlite.dll"; DestDir: "{app}\sqldrivers"; Flags: ignoreversion
+;Source: "AppDir\sqldrivers\qsqlmimer.dll"; DestDir: "{app}\sqldrivers"; Flags: ignoreversion
+;Source: "AppDir\sqldrivers\qsqloci.dll"; DestDir: "{app}\sqldrivers"; Flags: ignoreversion
+;Source: "AppDir\sqldrivers\qsqlodbc.dll"; DestDir: "{app}\sqldrivers"; Flags: ignoreversion
+;Source: "AppDir\sqldrivers\qsqlpsql.dll"; DestDir: "{app}\sqldrivers"; Flags: ignoreversion
+Source: "AppDir\styles\qmodernwindowsstyle.dll"; DestDir: "{app}\styles"; Flags: ignoreversion
+Source: "AppDir\tls\qcertonlybackend.dll"; DestDir: "{app}\tls"; Flags: ignoreversion
+Source: "AppDir\tls\qschannelbackend.dll"; DestDir: "{app}\tls"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
