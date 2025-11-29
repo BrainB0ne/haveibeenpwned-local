@@ -1,5 +1,10 @@
 ## Qt GUI application to check passwords against a locally stored HaveIBeenPwned SQLite Database
 
+**Build Status:**
+
+[![CMake on Windows-Latest](https://github.com/BrainB0ne/haveibeenpwned-local/actions/workflows/cmake-windows-latest.yml/badge.svg)](https://github.com/BrainB0ne/haveibeenpwned-local/actions/workflows/cmake-windows-latest.yml)
+[![CMake on Ubuntu-Latest](https://github.com/BrainB0ne/haveibeenpwned-local/actions/workflows/cmake-ubuntu-latest.yml/badge.svg)](https://github.com/BrainB0ne/haveibeenpwned-local/actions/workflows/cmake-ubuntu-latest.yml)
+
 **Build Requirements:**
 
 [Windows]
