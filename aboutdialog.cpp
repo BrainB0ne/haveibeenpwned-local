@@ -31,7 +31,7 @@ AboutDialog::AboutDialog(QWidget *parent) :
 
 AboutDialog::~AboutDialog()
 {
-    if (ui) delete ui;
+    delete ui;
 }
 
 void AboutDialog::on_licenseButton_clicked()

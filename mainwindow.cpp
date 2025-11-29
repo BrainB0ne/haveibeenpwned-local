@@ -71,9 +71,13 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    if (ui) delete ui;
-    if (mSettings) delete mSettings;
-    if (mConversionProcess) delete mConversionProcess;
+    if (mSettings)
+        delete mSettings;
+    
+    if (mConversionProcess)
+        delete mConversionProcess;
+
+    delete ui;
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
