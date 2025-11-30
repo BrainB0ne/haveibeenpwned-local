@@ -60,29 +60,29 @@ if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(haveibeenpwned-local)
 endif()
 
-if(WIN32)
-    # Run Qt Deploy Tool
-    set(MY_APP haveibeenpwned-local)
-
-    set(file_base_name "haveibeenpwned-local")
-    string(MAKE_C_IDENTIFIER "${file_base_name}" target_id)
-    string(RANDOM LENGTH 256 rand_str)
-    string(SHA1 args_hash "${rand_str}")
-    string(SUBSTRING "${args_hash}" 0 10 short_hash)
-
-    set(executable_path "\${QT_DEPLOY_BIN_DIR}/$<TARGET_FILE_NAME:${MY_APP}>")
-    set(deploy_script "${CMAKE_CURRENT_BINARY_DIR}/deploy_${target_id}_${CMAKE_BUILD_TYPE}_${short_hash}.cmake")
-
-    file(GENERATE OUTPUT ${deploy_script} CONTENT "
-    include(\"${QT_DEPLOY_SUPPORT}\")
-    qt_deploy_runtime_dependencies(
-        EXECUTABLE \"${executable_path}\"
-        PLUGINS_DIR bin
-        NO_TRANSLATIONS
-        NO_COMPILER_RUNTIME
-    )"
-    )
-
-    install(TARGETS ${MY_APP} DESTINATION bin)
-    install(SCRIPT ${deploy_script})
-endif()
+# if(WIN32)
+#     # Run Qt Deploy Tool
+#     set(MY_APP haveibeenpwned-local)
+# 
+#     set(file_base_name "haveibeenpwned-local")
+#     string(MAKE_C_IDENTIFIER "${file_base_name}" target_id)
+#     string(RANDOM LENGTH 256 rand_str)
+#     string(SHA1 args_hash "${rand_str}")
+#     string(SUBSTRING "${args_hash}" 0 10 short_hash)
+# 
+#     set(executable_path "\${QT_DEPLOY_BIN_DIR}/$<TARGET_FILE_NAME:${MY_APP}>")
+#     set(deploy_script "${CMAKE_CURRENT_BINARY_DIR}/deploy_${target_id}_${CMAKE_BUILD_TYPE}_${short_hash}.cmake")
+# 
+#     file(GENERATE OUTPUT ${deploy_script} CONTENT "
+#     include(\"${QT_DEPLOY_SUPPORT}\")
+#     qt_deploy_runtime_dependencies(
+#         EXECUTABLE \"${executable_path}\"
+#         PLUGINS_DIR bin
+#         NO_TRANSLATIONS
+#         NO_COMPILER_RUNTIME
+#     )"
+#     )
+# 
+#     install(TARGETS ${MY_APP} DESTINATION bin)
+#     install(SCRIPT ${deploy_script})
+# endif()
