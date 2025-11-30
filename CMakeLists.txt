@@ -65,10 +65,11 @@ if(WIN32)
     set(MY_APP haveibeenpwned-local)
 
     set(file_base_name "haveibeenpwned-local")
-    string(MAKE_C_IDENTIFIER "${file_base_name}" target_id)    
-    string(SHA1 args_hash "${ARGV}")
+    string(MAKE_C_IDENTIFIER "${file_base_name}" target_id)
+    string(RANDOM LENGTH 256 rand_str)
+    string(SHA1 args_hash "${rand_str}")
     string(SUBSTRING "${args_hash}" 0 10 short_hash)
-    
+
     set(executable_path "\${QT_DEPLOY_BIN_DIR}/$<TARGET_FILE_NAME:${MY_APP}>")
     set(deploy_script "${CMAKE_CURRENT_BINARY_DIR}/deploy_${target_id}_${CMAKE_BUILD_TYPE}_${short_hash}.cmake")
 
