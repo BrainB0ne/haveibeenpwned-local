@@ -25,41 +25,22 @@ set(PROJECT_SOURCES
     resulttabledialog.cpp resulttabledialog.h resulttabledialog.ui
 )
 
+set(RESOURCE
+    "haveibeenpwned-local.qrc"
+)
+
+qt_add_resources(PROJECT_RESOURCES ${RESOURCE})
+
 qt_add_executable(haveibeenpwned-local
     MANUAL_FINALIZATION
     ${PROJECT_SOURCES}
+    ${PROJECT_RESOURCES}
 )
 
 target_link_libraries(haveibeenpwned-local PRIVATE
     Qt${QT_VERSION_MAJOR}::Widgets
     Qt${QT_VERSION_MAJOR}::Gui
     Qt${QT_VERSION_MAJOR}::Sql
-)
-
-# Resources:
-set(haveibeenpwned-local_resource_files
-    "images/Have_I_Been_Pwned.png"
-    "images/qt/qt.png"
-    "images/tabler/LICENSE-ICONS"
-    "images/tabler/about.png"
-    "images/tabler/brand-tabler.png"
-    "images/tabler/clear.png"
-    "images/tabler/clipboard.png"
-    "images/tabler/database.png"
-    "images/tabler/erase.png"
-    "images/tabler/exit.png"
-    "images/tabler/eye.png"
-    "images/tabler/fileload.png"
-    "images/tabler/hash.png"
-    "images/tabler/password.png"
-    "images/tabler/settings.png"
-)
-
-qt_add_resources(haveibeenpwned-local "haveibeenpwned-local"
-    PREFIX
-        "/"
-    FILES
-        ${haveibeenpwned-local_resource_files}
 )
 
 set_target_properties(haveibeenpwned-local PROPERTIES
