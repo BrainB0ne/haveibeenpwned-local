@@ -64,7 +64,7 @@ if(WIN32)
     # Run Qt Deploy Tool
     set(MY_APP haveibeenpwned-local)
     set(executable_path "\${QT_DEPLOY_BIN_DIR}/$<TARGET_FILE_NAME:${MY_APP}>")
-    set(deploy_script "${CMAKE_CURRENT_BINARY_DIR}/deploy_${MY_APP}.cmake")
+    set(deploy_script "${CMAKE_CURRENT_BINARY_DIR}/deploy_${MY_APP}_${CMAKE_BUILD_TYPE}.cmake")
 
     file(GENERATE OUTPUT ${deploy_script} CONTENT "
     include(\"${QT_DEPLOY_SUPPORT}\")
