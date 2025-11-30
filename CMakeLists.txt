@@ -74,6 +74,7 @@ if(WIN32)
         NO_TRANSLATIONS
         NO_COMPILER_RUNTIME
     )"
+    TARGET ${PROJECT_NAME}
     )
 
     install(TARGETS ${MY_APP} DESTINATION bin)
