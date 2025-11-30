@@ -63,8 +63,14 @@ endif()
 if(WIN32)
     # Run Qt Deploy Tool
     set(MY_APP haveibeenpwned-local)
+
+    set(file_base_name "haveibeenpwned-local")
+    string(MAKE_C_IDENTIFIER "${file_base_name}" target_id)    
+    string(SHA1 args_hash "${ARGV}")
+    string(SUBSTRING "${args_hash}" 0 10 short_hash)
+    
     set(executable_path "\${QT_DEPLOY_BIN_DIR}/$<TARGET_FILE_NAME:${MY_APP}>")
-    set(deploy_script "${CMAKE_CURRENT_BINARY_DIR}/deploy_${MY_APP}_${CMAKE_BUILD_TYPE}.cmake")
+    set(deploy_script "${CMAKE_CURRENT_BINARY_DIR}/deploy_${target_id}_${CMAKE_BUILD_TYPE}_${short_hash}.cmake")
 
     file(GENERATE OUTPUT ${deploy_script} CONTENT "
     include(\"${QT_DEPLOY_SUPPORT}\")
@@ -74,7 +80,6 @@ if(WIN32)
         NO_TRANSLATIONS
         NO_COMPILER_RUNTIME
     )"
-    TARGET ${PROJECT_NAME}
     )
 
     install(TARGETS ${MY_APP} DESTINATION bin)
